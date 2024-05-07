@@ -1,213 +1,232 @@
-import { Typography, Box, Button, Stack } from "@mui/material";
 import "../Register.css";
-import React, { useState } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import React from "react";
+import {
+  Box,
+  Button,
+  TextField,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
+
+import { Formik } from "formik";
+import * as yup from "yup";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Header from "../components/Header";
 
 const Register = () => {
   let navigate = useNavigate();
+  const genders = ["Male", "Female"];
 
-  const [selectedGender, setSelectedGender] = useState("");
+  const handleFormSubmit = (values) => {
+    console.log(values);
+  };
 
-  const handleGenderChange = (event) => {
-    setSelectedGender(event.target.value);
+  const isNonMobile = useMediaQuery("(min-width:600px)");
+
+  const phoneRegExp =
+    /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+
+  const checkoutSchema = yup.object().shape({
+    firstName: yup.string().required("required"),
+    lastName: yup.string(),
+    SSN: yup.string().required("required"),
+    email: yup.string().email("invalid email").required("required"),
+    contact: yup
+      .string()
+      .matches(phoneRegExp, "Phone number is not valid")
+      .required("required"),
+    gender: yup.string().required("required"),
+    password: yup.string().required("required"),
+    address: yup.string().required("required"),
+    dateOfBirth: yup.string().required("required"),
+  });
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    contact: "",
+    SSN: "",
+    gender: "",
+    password: "",
+    address: "",
+    dateOfBirth: "",
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minWidth: "100%",
-        height: "100vh",
-      }}
-    >
-      <Box
-        sx={{
-          background: "#ECECECED 0% 0% no-repeat padding-box",
-          width: "30%",
-          minWidth: "550px",
-          minHeight: "720px",
-          height: "80%",
-          opacity: "1",
-          borderRadius: "8px",
-        }}
+    <Box m="20px">
+      <Header
+        title="Register"
+        subtitle={"Fill These Info to Creat Your Account"}
+      />
+
+      <Formik
+        onSubmit={handleFormSubmit}
+        initialValues={initialValues}
+        validationSchema={checkoutSchema}
       >
-        <Box
-          className="Register Form"
-          sx={{
-            ml: "8%",
-            mr: "2%",
-            mt: "6%",
-          }}
-        >
-          <form>
-            <fieldset style={{ border: "none", marginTop: "12%" }}>
-              <legend
-                style={{
-                  color: "#142A42",
-                  height: "47px",
-                  font: "normal normal bold 25px/30px Roboto",
+        {({
+          values,
+          errors,
+          touched,
+          handleBlur,
+          handleChange,
+          handleSubmit,
+        }) => (
+          <form onSubmit={handleSubmit}>
+            <Box
+              display="grid"
+              gap="30px"
+              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+              sx={{
+                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+              }}
+            >
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="First Name"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.firstName}
+                name="firstName"
+                error={!!touched.firstName && !!errors.firstName}
+                helperText={touched.firstName && errors.firstName}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Last Name"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.lastName}
+                name="lastName"
+                error={!!touched.lastName && !!errors.lastName}
+                helperText={touched.lastName && errors.lastName}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Contact Number"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.contact}
+                name="contact"
+                error={!!touched.contact && !!errors.contact}
+                helperText={touched.contact && errors.contact}
+                sx={{ gridColumn: "span 4" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="SSN"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.SSN}
+                name="SSN"
+                error={!!touched.SSN && !!errors.SSN}
+                helperText={touched.SSN && errors.SSN}
+                sx={{ gridColumn: "span 4" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Email"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.email}
+                name="email"
+                error={!!touched.email && !!errors.email}
+                helperText={touched.email && errors.email}
+                sx={{ gridColumn: "span 4" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="password"
+                label="Password"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.password}
+                name="password"
+                error={!!touched.password && !!errors.password}
+                helperText={touched.password && errors.password}
+                sx={{ gridColumn: "span 4" }}
+              />
+              <FormControl
+                fullWidth
+                variant="filled"
+                sx={{ gridColumn: "span 4" }}
+              >
+                <InputLabel>Gender</InputLabel>
+                <Select
+                  value={values.gender}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  name="gender"
+                  error={!!touched.gender && !!errors.gender}
+                >
+                  {genders.map((gender) => (
+                    <MenuItem key={gender} value={gender}>
+                      {gender}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Address"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 4" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="date"
+                label="Date of Birth"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.dateOfBirth}
+                name="dateOfBirth"
+                error={!!touched.dateOfBirth && !!errors.dateOfBirth}
+                helperText={touched.dateOfBirth && errors.dateOfBirth}
+                sx={{ gridColumn: "span 4" }}
+              />
+            </Box>
+            <Box display="flex" justifyContent="start" mt="20px">
+              <Button
+                type="submit"
+                color="secondary"
+                variant="contained"
+                size="large"
+                sx={{ marginBottom: "20px" }}
+                //This onClick Disconnects the Submit from form
+                onClick={() => {
+                  navigate("patientinfo");
                 }}
               >
-                Sign Up
-              </legend>
-              <Typography
-                sx={{
-                  width: "414px",
-                  height: "47px",
-                  font: "normal normal normal 25px/30px Roboto",
-                  color: "#9D9D9D",
-                }}
-              >
-                Enter Details to Create Your Account
-              </Typography>
-              <Box
-                display={"flex"}
-                flexDirection={"row"}
-                justifyContent={"space-between"}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-evenly",
-                  }}
-                >
-                  <input
-                    type="text"
-                    name="firstName"
-                    id="firstName"
-                    placeholder="First Name"
-                    required
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                    required
-                  />
-                  <input
-                    type="number"
-                    name="SSN"
-                    id="SSN"
-                    placeholder="SSN"
-                    required
-                  />
-                  <input
-                    type="number"
-                    name="phone"
-                    id="phone"
-                    placeholder="Phone"
-                    required
-                  />
-                  <span id="gender-radio">
-                    <h3>Gender</h3>
-
-                    <input
-                      className="radio-input"
-                      type="radio"
-                      name="gender"
-                      value="Male"
-                      checked={selectedGender === "Male"}
-                      onChange={handleGenderChange}
-                      required
-                    />
-                    <label className="registerlabels" htmlFor="male">
-                      Male
-                    </label>
-
-                    <input
-                      className="radio-input"
-                      type="radio"
-                      name="gender"
-                      value="Female"
-                      checked={selectedGender === "Female"}
-                      onChange={handleGenderChange}
-                    />
-                    <label className="registerlabels" htmlFor="female">
-                      Female
-                    </label>
-                  </span>
-                </Box>
-                <Stack>
-                  <input
-                    type="text"
-                    name="lastName"
-                    id="lastName"
-                    placeholder="Last Name"
-                    required
-                  />
-                  <input
-                    type="password"
-                    name="Password"
-                    id="Password"
-                    placeholder="Password"
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="address"
-                    id="address"
-                    placeholder="City"
-                    required
-                  />
-                  <input
-                    type="date"
-                    name="birthDate"
-                    id="birthDate"
-                    placeholder="Birth Date"
-                    required
-                  />
-                </Stack>
-              </Box>
-              <Box>
-                <Typography
-                  sx={{
-                    font: "normal normal normal 25px/30px Roboto",
-                    color: "#9D9D9D",
-                    mt: "7%",
-                  }}
-                >
-                  Already Registered?
-                  <span
-                    style={{
-                      font: "normal normal normal 25px/30px Roboto",
-                      color: "#2F9BA2",
-                      marginLeft: "2%",
-                    }}
-                  >
-                    <NavLink to={"../login"} className={"nav_link"}>
-                      Login
-                    </NavLink>
-                  </span>
-                </Typography>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  size="large"
-                  sx={{
-                    mt: "5%",
-                    width: "100%",
-                    height: "59px",
-                    fontSize: "23px",
-                    textTransform: "capitalize",
-                    "&:hover": {
-                      backgroundColor: "#868dfb",
-                    },
-                  }}
-                  onClick={() => navigate("patientinfo")}
-                >
-                  Register
-                </Button>
-              </Box>
-            </fieldset>
+                Submit
+              </Button>
+            </Box>
           </form>
-        </Box>
-      </Box>
+        )}
+      </Formik>
     </Box>
   );
 };

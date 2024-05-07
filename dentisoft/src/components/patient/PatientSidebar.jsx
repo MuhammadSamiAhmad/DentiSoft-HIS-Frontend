@@ -111,7 +111,7 @@ const PatientSidebar = () => {
         )}
 
         <Stack gap={2} paddingLeft={isCollapsed ? undefined : "3%"}>
-          <NavLink to={"login/patientDashboard"}>
+          <NavLink to={"patientDashboard"}>
             <Item
               title="Dashboard"
               icon={<HomeOutlinedIcon />}

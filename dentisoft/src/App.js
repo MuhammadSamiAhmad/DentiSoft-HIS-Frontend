@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider, Box } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import { Routes, Route } from "react-router-dom";
 //Importing Components
@@ -30,16 +30,13 @@ import Billing from "./components/patient/Billing";
 import DoctorDashboard from "./components/doctor/DoctorDashboard";
 import DoctorAppointments from "./components/doctor/DoctorAppointments";
 import DoctorPatients from "./components/doctor/DoctorPatients";
+import Layout from "./pages/Layout";
+import LandingPage from "./pages/LandingPage";
 
-import Topbar from "./components/Topbar";
-import PatientSidebar from "./components/patient/PatientSidebar";
-import AdminSidebar from "./components/admin/AdminSidebar";
-import DoctorSidebar from "./components/doctor/DoctorSidebar";
 import { useState } from "react";
 
 function App() {
   const [theme, colorMode] = useMode();
-  const colorStyle = theme.palette.mode === "dark" ? "#868dfb" : "#a4a9fc";
   const [person, setPerson] = useState("admin");
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -53,75 +50,38 @@ function App() {
           />
           <Route path="login/register" element={<Register />} />
           <Route path="login/register/patientinfo" element={<PatientInfo />} />
-        </Routes>
-        <div
-          className="app"
-          style={{ display: "flex", flexDirection: "row", height: "100vh" }}
-        >
-          {person === "patient" ? (
-            <PatientSidebar />
-          ) : person === "doctor" ? (
-            <DoctorSidebar />
-          ) : (
-            <AdminSidebar />
-          )}
-          <main
-            className="content"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-              overflowY: "auto",
-            }}
-          >
-            <Box
-              display={"flex"}
-              justifyContent={"end"}
-              sx={{ borderBottom: `10px solid ${colorStyle}` }}
-            >
-              <Topbar personSettings={"patientSettings"} />
-            </Box>
-            <Routes>
-              <Route path="login/adminDashboard" element={<AdminDashboard />} />
-              <Route path="createAppointment" element={<CreateAppointment />} />
-              <Route path="adminDoctors" element={<AdminDoctors />} />
-              <Route path="addDoctor" element={<AddDoctor />} />
-              <Route path="adminAppointments" element={<AdminAppointments />} />
-              <Route path="settings" element={<ProfileSettings />} />
-              <Route path="inventory" element={<Inventory />} />
-              <Route path="addEquipment" element={<AddEquipmentForm />} />
-              <Route path="patients" element={<AdminPatients />} />
-              <Route path="addPatient" element={<AddPatient />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="login/layout" element={<Layout person={person} />}>
+            <Route path="adminDashboard" element={<AdminDashboard />} />
+            <Route path="createAppointment" element={<CreateAppointment />} />
+            <Route path="adminDoctors" element={<AdminDoctors />} />
+            <Route path="addDoctor" element={<AddDoctor />} />
+            <Route path="adminAppointments" element={<AdminAppointments />} />
+            <Route path="settings" element={<ProfileSettings />} />
+            <Route path="inventory" element={<Inventory />} />
+            <Route path="addEquipment" element={<AddEquipmentForm />} />
+            <Route path="patients" element={<AdminPatients />} />
+            <Route path="addPatient" element={<AddPatient />} />
 
-              <Route
-                path="login/patientDashboard"
-                element={<PatientDashboard />}
-              />
-              <Route path="patientPortal" element={<PatientPortal />} />
-              <Route path="bookAppointment" element={<CreateAppointment />} />
-              <Route
-                path="patientAppointments"
-                element={<PatientAppointments />}
-              />
-              <Route
-                path="patientPrescriptions"
-                element={<PatientPrescriptions />}
-              />
-              <Route path="Billing" element={<Billing />} />
-              <Route path="patientSettings" element={<ProfileSettings />} />
-              <Route
-                path="login/doctorDashboard"
-                element={<DoctorDashboard />}
-              />
-              <Route
-                path="doctorAppointments"
-                element={<DoctorAppointments />}
-              />
-              <Route path="doctorPatients" element={<DoctorPatients />} />
-              <Route path="doctorSettings" element={<ProfileSettings />} />
-            </Routes>
-          </main>
-        </div>
+            <Route path="patientDashboard" element={<PatientDashboard />} />
+            <Route path="patientPortal" element={<PatientPortal />} />
+            <Route path="bookAppointment" element={<CreateAppointment />} />
+            <Route
+              path="patientAppointments"
+              element={<PatientAppointments />}
+            />
+            <Route
+              path="patientPrescriptions"
+              element={<PatientPrescriptions />}
+            />
+            <Route path="Billing" element={<Billing />} />
+            <Route path="patientSettings" element={<ProfileSettings />} />
+            <Route path="doctorDashboard" element={<DoctorDashboard />} />
+            <Route path="doctorAppointments" element={<DoctorAppointments />} />
+            <Route path="doctorPatients" element={<DoctorPatients />} />
+            <Route path="doctorSettings" element={<ProfileSettings />} />
+          </Route>
+        </Routes>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

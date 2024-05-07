@@ -112,7 +112,7 @@ const AdminSidebar = () => {
         )}
 
         <Stack gap={2} paddingLeft={isCollapsed ? undefined : "3%"}>
-          <NavLink to="login/adminDashboard">
+          <NavLink to="adminDashboard">
             <Item
               title="Dashboard"
               icon={<HomeOutlinedIcon />}

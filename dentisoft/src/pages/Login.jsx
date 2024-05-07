@@ -1,12 +1,40 @@
-import React, { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import "../Login.css";
-import { Typography, Box, Button } from "@mui/material";
+import Header from "../components/Header";
+
+import React, { useState } from "react";
+import { Typography, Box, Button, TextField, useTheme } from "@mui/material";
+
+import { Formik } from "formik";
+import * as yup from "yup";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 const Login = ({ person, setPerson }) => {
+  const theme = useTheme();
+
+  const colorStyle =
+    theme.palette.mode === "dark" ? "#3e4396" : "hsla(0, 0%, 82%, .3)";
+
+  const isNonMobile = useMediaQuery("(min-width:600px)");
+
+  const handleFormSubmit = (values) => {
+    console.log(values);
+  };
+
   let navigate = useNavigate();
   const [patientButtonColor, setPatientButtonColor] = useState(undefined);
   const [doctorButtonColor, setDoctorButtonColor] = useState(undefined);
-  const [adminButtonColor, setAdminButtonColor] = useState("red");
+  const [adminButtonColor, setAdminButtonColor] = useState("");
+
+  const checkoutSchema = yup.object().shape({
+    userName: yup.string().required("required"),
+    password: yup.string().required("required"),
+  });
+  const initialValues = {
+    userName: "",
+    password: "",
+  };
+
   return (
     <Box
       sx={{
@@ -21,7 +49,7 @@ const Login = ({ person, setPerson }) => {
     >
       <Box
         sx={{
-          background: "#ECECECED 0% 0% no-repeat padding-box",
+          background: `${colorStyle} 0% 0% no-repeat padding-box`,
           width: "30%",
           minWidth: "550px",
           minHeight: "720px",
@@ -36,7 +64,7 @@ const Login = ({ person, setPerson }) => {
             minHeight: "7%",
             textAlign: "left",
             font: "normal normal bold 40px/48px Roboto",
-            color: "#142B43",
+            color: "#000",
             opacity: "1",
             ml: "9%",
             mr: "9%",
@@ -141,78 +169,75 @@ const Login = ({ person, setPerson }) => {
             Patient
           </Button>
         </Box>
-        <Box
-          className="Sign In Form"
-          sx={{
-            ml: "8%",
-            mr: "2%",
-            mt: "6%",
-          }}
-        >
-          <form>
-            <fieldset style={{ border: "none" }}>
-              <legend
-                style={{
-                  color: "#142A42",
-                  height: "47px",
-                  font: "normal normal bold 25px/30px Roboto",
-                }}
-              >
-                Sign In
-              </legend>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  mr: "7%",
-                }}
-              >
-                <input
-                  className="login-input"
-                  type="text"
-                  name="text"
-                  id="name"
-                  placeholder="Email or Username"
-                  required
-                />
-                <input
-                  className="login-input"
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                  required
-                />
-                <Button
-                  type="submit"
-                  variant="contained"
-                  size="large"
+        <Box className="Sign In Form" m="20px">
+          <Header title="Sign In" />
+          <Formik
+            onSubmit={handleFormSubmit}
+            initialValues={initialValues}
+            validationSchema={checkoutSchema}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleBlur,
+              handleChange,
+              handleSubmit,
+            }) => (
+              <form onSubmit={handleSubmit}>
+                <Box
+                  display="grid"
+                  gap="30px"
+                  gridTemplateColumns="repeat(4, minmax(0, 1fr))"
                   sx={{
-                    mr: "2%",
-                    ml: "2%",
-                    mt: "10%",
-                    width: "100%",
-                    height: "59px",
-                    fontSize: "23px",
-                    textTransform: "capitalize",
-                    "&:hover": {
-                      backgroundColor: "#868dfb",
+                    "& > div": {
+                      gridColumn: isNonMobile ? undefined : "span 4",
                     },
                   }}
-                  onClick={() => {
-                    person === "patient"
-                      ? navigate("patientDashboard")
-                      : person === "doctor"
-                      ? navigate("doctorDashboard")
-                      : navigate("adminDashboard");
-                  }}
                 >
-                  Login
-                </Button>
-              </Box>
-            </fieldset>
-          </form>
+                  <TextField
+                    fullWidth
+                    variant="filled"
+                    type="text"
+                    label="User Name"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.userName}
+                    name="userName"
+                    error={!!touched.userName && !!errors.userName}
+                    helperText={touched.userName && errors.userName}
+                    sx={{ gridColumn: "span 4" }}
+                  />
+                  <TextField
+                    fullWidth
+                    variant="filled"
+                    type="password"
+                    label="Password"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.password}
+                    name="password"
+                    error={!!touched.password && !!errors.password}
+                    helperText={touched.password && errors.password}
+                    sx={{ gridColumn: "span 4" }}
+                  />
+                </Box>
+                <Box display="flex" justifyContent="center" mt="20px">
+                  <Button
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    size="large"
+                    onClick={() => {
+                      navigate("layout");
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Box>
+              </form>
+            )}
+          </Formik>
         </Box>
       </Box>
     </Box>
