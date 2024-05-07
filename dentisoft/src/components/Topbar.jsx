@@ -1,12 +1,12 @@
 import { Box, IconButton, useTheme } from "@mui/material";
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { ColorModeContext } from "../theme";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
-const Topbar = () => {
+const Topbar = ({ personSettings }) => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
 
@@ -21,13 +21,11 @@ const Topbar = () => {
             <LightModeOutlinedIcon />
           )}
         </IconButton>
-
-        <IconButton>
-          <SettingsOutlinedIcon />
-        </IconButton>
-        <IconButton>
-          <PersonOutlinedIcon />
-        </IconButton>
+        <NavLink to={`${personSettings}`}>
+          <IconButton>
+            <SettingsOutlinedIcon />
+          </IconButton>
+        </NavLink>
       </Box>
     </Box>
   );

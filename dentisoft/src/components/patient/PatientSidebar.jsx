@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme, Stack } from "@mui/material";
 import { tokens } from "../../theme";
 import Icon from "@mui/material/Icon";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
+import BookIcon from "@mui/icons-material/Book";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MedicalServicesRoundedIcon from "@mui/icons-material/MedicalServicesRounded";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import SummarizeIcon from "@mui/icons-material/Summarize";
-import MyProfilePic from "../../assets/images/Me.png";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MyProfilePic from "../../assets/images/profile.png";
 
 import { Item } from "../../utils/SiderbarItem";
 
@@ -27,7 +29,7 @@ const PatientSidebar = () => {
       rootStyles={{
         ".ps-sidebar-container": {
           backgroundColor: `${colors.primary[400]}`,
-          height: "100vh",
+          minHeight: "100vh",
         },
       }}
       collapsed={isCollapsed}
@@ -100,7 +102,7 @@ const PatientSidebar = () => {
               <Typography
                 variant="h5"
                 color={colors.greenAccent[500]}
-                mb={"40%"}
+                mb={"5%"}
               >
                 Patient
               </Typography>
@@ -108,13 +110,15 @@ const PatientSidebar = () => {
           </Box>
         )}
 
-        <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-          <Item
-            title="Dashboard"
-            icon={<HomeOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
+        <Stack gap={2} paddingLeft={isCollapsed ? undefined : "3%"}>
+          <NavLink to={"login/patientDashboard"}>
+            <Item
+              title="Dashboard"
+              icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
           <NavLink to={"patientAppointments"}>
             <Item
               title="Appointments"
@@ -123,12 +127,22 @@ const PatientSidebar = () => {
               setSelected={setSelected}
             />
           </NavLink>
-          <Item
-            title="Medical Record"
-            icon={<SummarizeIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
+          <NavLink to={"bookAppointment"}>
+            <Item
+              title="Book an Appointment"
+              icon={<BookIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
+          <NavLink to={"patientPortal"}>
+            <Item
+              title="Medical Record"
+              icon={<SummarizeIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
           <NavLink to={"patientPrescriptions"}>
             <Item
               title="Prescriptions"
@@ -145,7 +159,15 @@ const PatientSidebar = () => {
               setSelected={setSelected}
             />
           </NavLink>
-        </Box>
+          <NavLink to="">
+            <Item
+              title="Logout"
+              icon={<LogoutIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
+        </Stack>
       </Menu>
     </Sidebar>
   );

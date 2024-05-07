@@ -14,7 +14,9 @@ export const Item = ({ title, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography>{title}</Typography>
+      <Typography sx={{ textDecoration: "none", fontSize: "1rem" }}>
+        {title}
+      </Typography>
     </MenuItem>
   );
 };

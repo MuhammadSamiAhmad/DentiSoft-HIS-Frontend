@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme, Stack } from "@mui/material";
 import { tokens } from "../../theme";
 import Icon from "@mui/material/Icon";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -9,7 +9,8 @@ import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
 import SickOutlinedIcon from "@mui/icons-material/SickOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MedicalServicesRoundedIcon from "@mui/icons-material/MedicalServicesRounded";
-import MyProfilePic from "../../assets/images/Me.png";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MyProfilePic from "../../assets/images/profile.png";
 
 import { Item } from "../../utils/SiderbarItem";
 
@@ -25,7 +26,7 @@ const DoctorSidebar = () => {
       rootStyles={{
         ".ps-sidebar-container": {
           backgroundColor: `${colors.primary[400]}`,
-          height: "100vh",
+          minHeight: "100vh",
         },
       }}
       collapsed={isCollapsed}
@@ -98,7 +99,7 @@ const DoctorSidebar = () => {
               <Typography
                 variant="h5"
                 color={colors.greenAccent[500]}
-                mb={"40%"}
+                mb={"5%"}
               >
                 Doctor
               </Typography>
@@ -106,7 +107,7 @@ const DoctorSidebar = () => {
           </Box>
         )}
 
-        <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+        <Stack gap={2} paddingLeft={isCollapsed ? undefined : "5%"}>
           <NavLink to={"login/doctorDashboard"}>
             <Item
               title="Dashboard"
@@ -131,7 +132,15 @@ const DoctorSidebar = () => {
               setSelected={setSelected}
             />
           </NavLink>
-        </Box>
+          <NavLink to="">
+            <Item
+              title="Logout"
+              icon={<LogoutIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
+        </Stack>
       </Menu>
     </Sidebar>
   );

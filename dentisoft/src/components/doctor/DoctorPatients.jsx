@@ -1,27 +1,55 @@
-import React from "react";
-import { Box, useTheme } from "@mui/material";
-import { tokens } from "../../theme";
-import { mockDataTeam } from "../../data/mockData";
+import React, { useState } from "react";
+import { Box, Stack } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
+import { mockPatientData } from "../../data/mockData";
 import Header from "../../components/Header";
 import Card from "../PatientCard";
 
 const DoctorPatients = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  const [currentPage, setCurrentPage] = useState(1);
+  const patientsPerPage = 6; // Number of patients per page
 
+  const indexOfLastPatient = currentPage * patientsPerPage;
+  const indexOfFirstPatient = indexOfLastPatient - patientsPerPage;
+  const currentPatients = mockPatientData.slice(
+    indexOfFirstPatient,
+    indexOfLastPatient
+  );
+
+  const paginate = (e, value) => {
+    setCurrentPage(value);
+    window.scrollTo({ top: 1800, behavior: "smooth" });
+  };
   return (
-    <Box m="20px">
+    <Box m="30px">
       <Header title="Patients" />
-      <Box
+      <Stack
+        gap={4}
         sx={{
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          width: "500px",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <Card />
-      </Box>
+        {currentPatients.map((patient, index) => (
+          <Card key={index} patient={patient} />
+        ))}
+      </Stack>{" "}
+      <Stack mt={"100px"} alignItems={"center"}>
+        {mockPatientData.length > patientsPerPage && (
+          <Pagination
+            color="standard"
+            shape="rounded"
+            defaultPage={1}
+            count={Math.ceil(mockPatientData.length / patientsPerPage)}
+            page={currentPage}
+            onChange={paginate}
+            size="large"
+          />
+        )}
+      </Stack>
     </Box>
   );
 };

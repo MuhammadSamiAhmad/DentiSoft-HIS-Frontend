@@ -1,4 +1,4 @@
-import { Typography, Box, Button } from "@mui/material";
+import { Typography, Box, Button, Stack } from "@mui/material";
 import "../Register.css";
 import React, { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
@@ -97,6 +97,13 @@ const Register = () => {
                     placeholder="SSN"
                     required
                   />
+                  <input
+                    type="number"
+                    name="phone"
+                    id="phone"
+                    placeholder="Phone"
+                    required
+                  />
                   <span id="gender-radio">
                     <h3>Gender</h3>
 
@@ -126,14 +133,7 @@ const Register = () => {
                     </label>
                   </span>
                 </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-evenly",
-                  }}
-                  p={"0"}
-                >
+                <Stack>
                   <input
                     type="text"
                     name="lastName"
@@ -142,10 +142,10 @@ const Register = () => {
                     required
                   />
                   <input
-                    type="number"
-                    name="phone"
-                    id="phone"
-                    placeholder="Phone"
+                    type="password"
+                    name="Password"
+                    id="Password"
+                    placeholder="Password"
                     required
                   />
                   <input
@@ -162,7 +162,7 @@ const Register = () => {
                     placeholder="Birth Date"
                     required
                   />
-                </Box>
+                </Stack>
               </Box>
               <Box>
                 <Typography

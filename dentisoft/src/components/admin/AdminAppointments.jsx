@@ -1,36 +1,33 @@
 import React from "react";
-import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { Box, useTheme } from "@mui/material";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataTeam } from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+import { mockAdminAppointments } from "../../data/mockData";
+import IconButton from "@mui/material/IconButton";
+import CancelIcon from "@mui/icons-material/Cancel";
 import Header from "../../components/Header";
+import AppointmentPopUp from "../AppointmentPopUp";
 
 const AdminAppointments = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [rows, setRows] = React.useState(mockAdminAppointments);
 
+  const deleteUser = React.useCallback(
+    (id) => {
+      setTimeout(() => {
+        setRows((prevRows) => prevRows.filter((row) => row.id !== id));
+      });
+    },
+    [setRows]
+  );
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "patientName",
+      headerName: "Patient Name",
       flex: 1,
       cellClassName: "name-column--cell",
-    },
-    {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
-    },
-    {
-      field: "phone",
-      headerName: "Phone Number",
-      flex: 1,
     },
     {
       field: "email",
@@ -38,41 +35,61 @@ const AdminAppointments = () => {
       flex: 1,
     },
     {
-      field: "accessLevel",
-      headerName: "Access Level",
+      field: "gender",
+      headerName: "Gender",
+    },
+    {
+      field: "date",
+      type: "Date",
+      headerName: "Date",
       flex: 1,
-      renderCell: ({ row: { access } }) => {
-        return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              access === "admin"
-                ? colors.greenAccent[600]
-                : access === "manager"
-                ? colors.greenAccent[700]
-                : colors.greenAccent[700]
-            }
-            borderRadius="4px"
-          >
-            {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-            {access === "manager" && <SecurityOutlinedIcon />}
-            {access === "user" && <LockOpenOutlinedIcon />}
-            <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {access}
-            </Typography>
-          </Box>
-        );
-      },
+    },
+    {
+      field: "time",
+      type: "Time",
+      headerName: "Time",
+      flex: 1,
+    },
+    {
+      field: "mobile",
+      type: "Number",
+      headerName: "Mobile Number",
+      flex: 1,
+    },
+    {
+      field: "doctorName",
+      type: "Name",
+      headerName: "Doctor Name",
+      flex: 1,
+    },
+    {
+      field: "injuryCondition",
+      headerName: "Condition/Reason",
+      flex: 1,
+    },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: "Actions",
+      flex: 1,
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={
+            <IconButton aria-label="delete" color="error" size="large">
+              <CancelIcon />
+            </IconButton>
+          }
+          label="Delete"
+          onClick={() => deleteUser(params.id)}
+        />,
+        <AppointmentPopUp />,
+      ],
     },
   ];
 
   return (
     <Box m="20px">
-      <Header title="Appointments" subtitle="Managing Your Appointments" />
+      <Header title="Appointments" subtitle={"Manage Appointments"} />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -106,7 +123,7 @@ const AdminAppointments = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
+        <DataGrid checkboxSelection rows={rows} columns={columns} />
       </Box>
     </Box>
   );

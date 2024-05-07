@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import "../Login.css";
 import { Typography, Box, Button } from "@mui/material";
-const Login = () => {
+const Login = ({ person, setPerson }) => {
   let navigate = useNavigate();
   const [patientButtonColor, setPatientButtonColor] = useState(undefined);
   const [doctorButtonColor, setDoctorButtonColor] = useState(undefined);
   const [adminButtonColor, setAdminButtonColor] = useState("red");
-  const [person, setPerson] = useState("admin");
   return (
     <Box
       sx={{

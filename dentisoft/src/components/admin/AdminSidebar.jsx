@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { NavLink } from "react-router-dom";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme, Stack } from "@mui/material";
 import { tokens } from "../../theme";
 import Icon from "@mui/material/Icon";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -10,7 +10,11 @@ import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
 import SickOutlinedIcon from "@mui/icons-material/SickOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MedicalServicesRoundedIcon from "@mui/icons-material/MedicalServicesRounded";
-import MyProfilePic from "../../assets/images/Me.png";
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import AddIcon from "@mui/icons-material/Add";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MyProfilePic from "../../assets/images/profile.png";
 
 import { Item } from "../../utils/SiderbarItem";
 
@@ -26,7 +30,7 @@ const AdminSidebar = () => {
       rootStyles={{
         ".ps-sidebar-container": {
           backgroundColor: `${colors.primary[400]}`,
-          height: "100vh",
+          minHeight: "100vh",
         },
       }}
       collapsed={isCollapsed}
@@ -99,7 +103,7 @@ const AdminSidebar = () => {
               <Typography
                 variant="h5"
                 color={colors.greenAccent[500]}
-                mb={"40%"}
+                mb={"5%"}
               >
                 Admin
               </Typography>
@@ -107,10 +111,8 @@ const AdminSidebar = () => {
           </Box>
         )}
 
-        <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-          <NavLink
-            to="" /*I gotta create a layout component and then link to each person type dashboard from that layout(lol this empty quotations solved it) */
-          >
+        <Stack gap={2} paddingLeft={isCollapsed ? undefined : "3%"}>
+          <NavLink to="login/adminDashboard">
             <Item
               title="Dashboard"
               icon={<HomeOutlinedIcon />}
@@ -126,10 +128,26 @@ const AdminSidebar = () => {
               setSelected={setSelected}
             />
           </NavLink>
+          <NavLink to="createAppointment">
+            <Item
+              title="Create an Appointment"
+              icon={<EditNoteIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
           <NavLink to="adminDoctors">
             <Item
               title="Doctors"
               icon={<GroupOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
+          <NavLink to="addDoctor">
+            <Item
+              title="Add a Doctor"
+              icon={<PersonAddAltIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -142,6 +160,14 @@ const AdminSidebar = () => {
               setSelected={setSelected}
             />
           </NavLink>
+          <NavLink to="addPatient">
+            <Item
+              title="Add a Patient"
+              icon={<PersonAddAltIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
           <NavLink to="inventory">
             <Item
               title="Inventory"
@@ -150,7 +176,23 @@ const AdminSidebar = () => {
               setSelected={setSelected}
             />
           </NavLink>
-        </Box>
+          <NavLink to="addEquipment">
+            <Item
+              title="Add Equipment"
+              icon={<AddIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
+          <NavLink to="">
+            <Item
+              title="Logout"
+              icon={<LogoutIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
+        </Stack>
       </Menu>
     </Sidebar>
   );
