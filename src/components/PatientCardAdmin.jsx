@@ -118,7 +118,9 @@ const PatientCardAdmin = ({ patient, handleDelete }) => {
             borderRadius: "50px",
             pr: "2%",
           }}
-          onClick={handleDelete(patient.id)}
+          onClick={() => {
+            handleDelete(patient.id);
+          }}
         ></Button>
         <EditPatientPopUp />
         <EditPatientInvoicesPopUp />

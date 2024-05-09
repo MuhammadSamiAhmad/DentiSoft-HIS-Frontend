@@ -11,22 +11,19 @@ const Inventory = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = mockEquipmentData.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
-  const [items, setItems] = useState(currentItems);
+  const [items, setItems] = useState(mockEquipmentData);
 
   const handleDelete = React.useCallback(
     (id) => {
       setTimeout(() => {
-        setItems((currentItems) =>
-          currentItems.filter((item) => item.id !== id)
+        setItems((mockEquipmentData) =>
+          mockEquipmentData.filter((item) => item.ItemID !== id)
         );
       });
     },
     [setItems]
   );
+  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
   const paginate = (e, value) => {
     setCurrentPage(value);
     window.scrollTo({ top: 1800, behavior: "smooth" });
@@ -50,7 +47,7 @@ const Inventory = () => {
         ))}
       </Stack>{" "}
       <Stack mt={"100px"} alignItems={"center"}>
-        {mockEquipmentData.length > itemsPerPage && (
+        {items.length > itemsPerPage && (
           <Pagination
             color="standard"
             shape="rounded"

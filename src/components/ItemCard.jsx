@@ -9,7 +9,7 @@ import WarehouseIcon from "@mui/icons-material/Warehouse";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditItemPopUp from "./EditItemPopUp";
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item, handleDelete }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorStyle =
@@ -105,6 +105,9 @@ const ItemCard = ({ item }) => {
               alignItems: "center",
               borderRadius: "50px",
               pr: "2%",
+            }}
+            onClick={() => {
+              handleDelete(item.ItemID);
             }}
           ></Button>
           <EditItemPopUp />

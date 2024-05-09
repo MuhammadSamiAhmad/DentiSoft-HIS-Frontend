@@ -12,22 +12,23 @@ const AdminPatients = () => {
 
   const indexOfLastPatient = currentPage * patientsPerPage;
   const indexOfFirstPatient = indexOfLastPatient - patientsPerPage;
-  const currentPatients = mockPatientData.slice(
-    indexOfFirstPatient,
-    indexOfLastPatient
-  );
-  const [patients, setPatients] = React.useState(currentPatients);
+  const [patients, setPatients] = React.useState(mockPatientData);
 
   const handleDelete = React.useCallback(
     (id) => {
       setTimeout(() => {
-        setPatients((currentPatients) =>
-          currentPatients.filter((item) => item.id !== id)
+        setPatients((mockPatientData) =>
+          mockPatientData.filter((patient) => patient.id !== id)
         );
       });
     },
     [setPatients]
   );
+  const currentPatients = patients.slice(
+    indexOfFirstPatient,
+    indexOfLastPatient
+  );
+
   const paginate = (e, value) => {
     setCurrentPage(value);
     window.scrollTo({ top: 1800, behavior: "smooth" });
@@ -51,7 +52,7 @@ const AdminPatients = () => {
         ))}
       </Stack>{" "}
       <Stack mt={"100px"} alignItems={"center"}>
-        {mockPatientData.length > patientsPerPage && (
+        {patients.length > patientsPerPage && (
           <Pagination
             color="standard"
             shape="rounded"

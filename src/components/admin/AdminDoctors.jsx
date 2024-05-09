@@ -12,11 +12,7 @@ const AdminDoctors = () => {
 
   const indexOfLastDoctor = currentPage * doctorsPerPage;
   const indexOfFirstDoctor = indexOfLastDoctor - doctorsPerPage;
-  const currentDoctors = mockDoctorData.slice(
-    indexOfFirstDoctor,
-    indexOfLastDoctor
-  );
-  const [doctors, setDoctors] = useState(currentDoctors);
+  const [doctors, setDoctors] = useState(mockDoctorData);
 
   const handleDelete = React.useCallback(
     (id) => {
@@ -28,6 +24,9 @@ const AdminDoctors = () => {
     },
     [setDoctors]
   );
+
+  const currentDoctors = doctors.slice(indexOfFirstDoctor, indexOfLastDoctor);
+
   const paginate = (e, value) => {
     setCurrentPage(value);
     window.scrollTo({ top: 1800, behavior: "smooth" });
@@ -51,7 +50,7 @@ const AdminDoctors = () => {
         ))}
       </Stack>{" "}
       <Stack mt={"100px"} alignItems={"center"}>
-        {mockDoctorData.length > doctorsPerPage && (
+        {doctors.length > doctorsPerPage && (
           <Pagination
             color="standard"
             shape="rounded"

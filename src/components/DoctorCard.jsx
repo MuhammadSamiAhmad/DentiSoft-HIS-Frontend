@@ -7,7 +7,7 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditDoctorPopUp from "./EditDoctorPopUp";
 
-const DoctorCard = ({ doctor }) => {
+const DoctorCard = ({ doctor, handleDelete }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorStyle =
@@ -111,6 +111,9 @@ const DoctorCard = ({ doctor }) => {
                     alignItems: "center",
                     borderRadius: "50px",
                     pr: "2%",
+                  }}
+                  onClick={() => {
+                    handleDelete(doctor.ID);
                   }}
                 ></Button>
                 <EditDoctorPopUp />
