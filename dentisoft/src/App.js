@@ -1,8 +1,6 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import { Routes, Route } from "react-router-dom";
-//Importing Components
-// import Topbar from "./components/Topbar"; // will be called inside dashboard pages
 
 //Importing Pages
 import Login from "./pages/Login";

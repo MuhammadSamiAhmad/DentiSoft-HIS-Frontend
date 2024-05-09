@@ -3,11 +3,11 @@ import { tokens } from "../../theme";
 import { mockTransactions } from "../../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import EmailIcon from "@mui/icons-material/Email";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import TrafficIcon from "@mui/icons-material/Traffic";
+import HealingIcon from "@mui/icons-material/Healing";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import Header from "../../components/Header";
-//Other Components Imports
+// Other Components Imports
 import LineChart from "../../components/LineChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
         >
           <StatBox
             title="12,361"
-            subtitle="Emails Sent"
+            subtitle="Oral Exams Conducted"
             progress="0.75"
             increase="+14%"
             icon={
@@ -75,11 +75,11 @@ const AdminDashboard = () => {
         >
           <StatBox
             title="431,225"
-            subtitle="Sales Obtained"
+            subtitle="Dental Procedures Completed"
             progress="0.50"
             increase="+21%"
             icon={
-              <PointOfSaleIcon
+              <HealingIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -94,11 +94,11 @@ const AdminDashboard = () => {
         >
           <StatBox
             title="32,441"
-            subtitle="New Clients"
+            subtitle="New Patients Registered"
             progress="0.30"
             increase="+5%"
             icon={
-              <PersonAddIcon
+              <AddCircleOutlineIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -113,11 +113,11 @@ const AdminDashboard = () => {
         >
           <StatBox
             title="1,325,134"
-            subtitle="Traffic Received"
+            subtitle="Emergency Visits Handled"
             progress="0.80"
             increase="+43%"
             icon={
-              <TrafficIcon
+              <LocalHospitalIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }

@@ -3,12 +3,10 @@ import { NavLink } from "react-router-dom";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme, Stack } from "@mui/material";
 import { tokens } from "../../theme";
-import Icon from "@mui/material/Icon";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
 import SickOutlinedIcon from "@mui/icons-material/SickOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MedicalServicesRoundedIcon from "@mui/icons-material/MedicalServicesRounded";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MyProfilePic from "../../assets/images/profile.png";
 
@@ -54,16 +52,7 @@ const DoctorSidebar = () => {
               display="flex"
               justifyContent="space-between"
               alignItems="center"
-              ml="15px"
             >
-              <Box display={"flex"} flexDirection={"row"}>
-                <Icon sx={{ mr: "20px", mt: "3px" }} color="error">
-                  <MedicalServicesRoundedIcon />
-                </Icon>
-                <Typography variant="h3" color={colors.grey[100]}>
-                  DentiSoft
-                </Typography>
-              </Box>
               <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                 <MenuOutlinedIcon />
               </IconButton>

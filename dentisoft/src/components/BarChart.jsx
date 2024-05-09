@@ -39,8 +39,32 @@ const BarChart = ({ isDashboard = false }) => {
           },
         },
       }}
-      keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
-      indexBy="country"
+      keys={[
+        "Plaque Removal",
+        "Tooth Whitening",
+        "Fluoride Treatment",
+        "X-Rays",
+        "Composite Fillings",
+        "Amalgam Fillings",
+        "Gold Fillings",
+        "Ceramic Fillings",
+        "Braces",
+        "Invisalign",
+        "Retainers",
+        "Space Maintainers",
+        "Gum Surgery",
+        "Jaw Surgery",
+        "Implant Surgery",
+        "Bone Grafting",
+        "Dentures",
+        "Dental Crowns",
+        "Dental Bridges",
+        "Simple Extraction",
+        "Surgical Extraction",
+        "Wisdom Tooth Removal",
+        "Root Canal Treatment",
+      ]}
+      indexBy="operation"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
@@ -76,7 +100,7 @@ const BarChart = ({ isDashboard = false }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "country", // changed
+        legend: isDashboard ? undefined : "operation", // changed
         legendPosition: "middle",
         legendOffset: 32,
       }}
@@ -121,7 +145,9 @@ const BarChart = ({ isDashboard = false }) => {
       ]}
       role="application"
       barAriaLabel={function (e) {
-        return e.id + ": " + e.formattedValue + " in country: " + e.indexValue;
+        return (
+          e.id + ": " + e.formattedValue + " in operation: " + e.indexValue
+        );
       }}
     />
   );

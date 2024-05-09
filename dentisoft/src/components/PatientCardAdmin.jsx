@@ -4,6 +4,7 @@ import { tokens } from "../theme";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditPatientPopUp from "./EditPatientPopUp";
+import EditPatientInvoicesPopUp from "./EditPatientInvoicesPopUp";
 import MyProfilePic from "../assets/images/profile.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import DateRangeIcon from "@mui/icons-material/DateRange";
@@ -120,6 +121,7 @@ const PatientCardAdmin = ({ patient, handleDelete }) => {
           onClick={handleDelete(patient.id)}
         ></Button>
         <EditPatientPopUp />
+        <EditPatientInvoicesPopUp />
       </Stack>
     </Box>
   );

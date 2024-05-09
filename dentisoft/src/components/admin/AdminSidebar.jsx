@@ -3,13 +3,12 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { NavLink } from "react-router-dom";
 import { Box, IconButton, Typography, useTheme, Stack } from "@mui/material";
 import { tokens } from "../../theme";
-import Icon from "@mui/material/Icon";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
 import SickOutlinedIcon from "@mui/icons-material/SickOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MedicalServicesRoundedIcon from "@mui/icons-material/MedicalServicesRounded";
+import WarehouseIcon from "@mui/icons-material/Warehouse";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import AddIcon from "@mui/icons-material/Add";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
@@ -58,16 +57,7 @@ const AdminSidebar = () => {
               display="flex"
               justifyContent="space-between"
               alignItems="center"
-              ml="15px"
             >
-              <Box display={"flex"} flexDirection={"row"}>
-                <Icon sx={{ mr: "20px", mt: "3px" }} color="error">
-                  <MedicalServicesRoundedIcon />
-                </Icon>
-                <Typography variant="h3" color={colors.grey[100]}>
-                  DentiSoft
-                </Typography>
-              </Box>
               <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                 <MenuOutlinedIcon />
               </IconButton>
@@ -171,7 +161,7 @@ const AdminSidebar = () => {
           <NavLink to="inventory">
             <Item
               title="Inventory"
-              icon={<FactCheckOutlinedIcon />}
+              icon={<WarehouseIcon />}
               selected={selected}
               setSelected={setSelected}
             />
