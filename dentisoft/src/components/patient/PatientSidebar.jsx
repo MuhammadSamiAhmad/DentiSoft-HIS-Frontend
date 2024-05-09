@@ -148,7 +148,7 @@ const PatientSidebar = () => {
               setSelected={setSelected}
             />
           </NavLink>
-          <NavLink to="">
+          <NavLink to="../Login">
             <Item
               title="Logout"
               icon={<LogoutIcon />}
