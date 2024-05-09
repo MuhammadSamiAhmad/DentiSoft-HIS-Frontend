@@ -1,6 +1,8 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import { Routes, Route } from "react-router-dom";
+import Favicon from "react-favicon";
+import Logo from "./assets/images/Logo.jpeg";
 
 //Importing Pages
 import Login from "./pages/Login";
@@ -30,16 +32,20 @@ import DoctorAppointments from "./components/doctor/DoctorAppointments";
 import DoctorPatients from "./components/doctor/DoctorPatients";
 import Layout from "./pages/Layout";
 import LandingPage from "./pages/LandingPage";
-
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function App() {
+  useEffect(() => {
+    document.title = "Radiant Smiles Clinic";
+  }, []);
+
   const [theme, colorMode] = useMode();
   const [person, setPerson] = useState("admin");
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <Favicon url={Logo} />
         <Routes>
           <Route
             index
