@@ -24,7 +24,7 @@ const Login = ({ person, setPerson }) => {
   let navigate = useNavigate();
   const [patientButtonColor, setPatientButtonColor] = useState(undefined);
   const [doctorButtonColor, setDoctorButtonColor] = useState(undefined);
-  const [adminButtonColor, setAdminButtonColor] = useState("");
+  const [adminButtonColor, setAdminButtonColor] = useState("red");
 
   const checkoutSchema = yup.object().shape({
     userName: yup.string().required("required"),
@@ -229,7 +229,11 @@ const Login = ({ person, setPerson }) => {
                     variant="contained"
                     size="large"
                     onClick={() => {
-                      navigate("layout");
+                      person === "admin"
+                        ? navigate("layout/adminDashboard")
+                        : person === "doctor"
+                        ? navigate("layout/doctorDashboard")
+                        : navigate("layout/patientDashboard");
                     }}
                   >
                     Login
