@@ -9,10 +9,10 @@ import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
 import SickOutlinedIcon from "@mui/icons-material/SickOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import WarehouseIcon from "@mui/icons-material/Warehouse";
-import EditNoteIcon from "@mui/icons-material/EditNote";
 import AddIcon from "@mui/icons-material/Add";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import LogoutIcon from "@mui/icons-material/Logout";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import MyProfilePic from "../../assets/images/profile.png";
 
 import { Item } from "../../utils/SiderbarItem";
@@ -101,7 +101,7 @@ const AdminSidebar = () => {
           </Box>
         )}
 
-        <Stack gap={2} paddingLeft={isCollapsed ? undefined : "3%"}>
+        <Stack gap={2}>
           <NavLink to="adminDashboard">
             <Item
               title="Dashboard"
@@ -114,14 +114,6 @@ const AdminSidebar = () => {
             <Item
               title="Appointments"
               icon={<FactCheckOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </NavLink>
-          <NavLink to="createAppointment">
-            <Item
-              title="Create an Appointment"
-              icon={<EditNoteIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -170,6 +162,14 @@ const AdminSidebar = () => {
             <Item
               title="Add Equipment"
               icon={<AddIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </NavLink>
+          <NavLink to="services">
+            <Item
+              title="Set Service Costs"
+              icon={<SupportAgentIcon />}
               selected={selected}
               setSelected={setSelected}
             />

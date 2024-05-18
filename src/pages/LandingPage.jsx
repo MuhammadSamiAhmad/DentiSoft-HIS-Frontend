@@ -16,8 +16,6 @@ const LandingPage = () => {
     <Box
       sx={{
         display: "flex",
-        width: "100%",
-        height: "100%",
         flexDirection: "column",
       }}
     >
@@ -25,7 +23,7 @@ const LandingPage = () => {
         className="NavBar"
         flexDirection={"row"}
         justifyContent={"space-between"}
-        sx={{ height: "90px" }}
+        sx={{ height: "10vh" }}
       >
         <img
           src={Logo}
@@ -37,7 +35,7 @@ const LandingPage = () => {
             margin: "10px 10px 10px 50px",
           }}
         />
-        <Stack className="Links" flexDirection={"row"} gap={10}>
+        <Stack className="Links" flexDirection={"row"} gap={7} mr={"3%"}>
           <Link
             smooth={true}
             offset={50}
@@ -50,7 +48,7 @@ const LandingPage = () => {
               fontWeight={"bold"}
               sx={{
                 ":hover": {
-                  color: "red",
+                  color: "#36987f",
                   cursor: "pointer",
                   transition: "all .3s ease-out",
                   transform: "translateY(-5px)",
@@ -74,7 +72,7 @@ const LandingPage = () => {
               fontWeight={"bold"}
               sx={{
                 ":hover": {
-                  color: "red",
+                  color: "#36987f",
                   cursor: "pointer",
                   transition: "all .3s ease-out",
                   transform: "translateY(-5px)",
@@ -98,7 +96,7 @@ const LandingPage = () => {
               fontWeight={"bold"}
               sx={{
                 ":hover": {
-                  color: "red",
+                  color: "#36987f",
                   cursor: "pointer",
                   transition: "all .3s ease-out",
                   transform: "translateY(-5px)",
@@ -110,7 +108,7 @@ const LandingPage = () => {
               Services
             </Typography>
           </Link>
-          {/* <Link
+          <Link
             smooth={true}
             offset={50}
             duration={500}
@@ -120,9 +118,10 @@ const LandingPage = () => {
             <Typography
               variant="h3"
               fontWeight={"bold"}
+              width={"114px"}
               sx={{
                 ":hover": {
-                  color: "red",
+                  color: "#36987f",
                   cursor: "pointer",
                   transition: "all .3s ease-out",
                   transform: "translateY(-5px)",
@@ -133,18 +132,21 @@ const LandingPage = () => {
             >
               Contact Us
             </Typography>
-          </Link> */}
+          </Link>
           <Button
             variant="contained"
             size="large"
-            color="secondary"
+            color="primary"
             sx={{
               margin: "30px 10px 30px 10px",
+              padding: "3.5% 9% 3.5% 9% ",
               ":hover": {
-                backgroundColor: "red",
+                backgroundColor: "#36987f",
                 transition: "all .3s ease-out",
                 transform: "translateY(-5px)",
               },
+              fontWeight: "bold",
+              fontSize: "1rem",
             }}
             onClick={() => {
               navigate("login");
@@ -154,23 +156,28 @@ const LandingPage = () => {
           </Button>
         </Stack>
       </Stack>
-      <div id="Banner">
-        <Stack className="Banner" position={"relative"}>
+      <div id="Banner" style={{ position: "relative" }}>
+        <Stack className="Banner">
           <img src={require(`../assets/images/Dentist.jpeg`)} alt="" />
-          <Stack position={"absolute"} left={320} top={300}>
-            <Typography variant="h3" color={"#4cceac"}>
-              {" "}
+          <Stack position={"absolute"} top={"30%"} left={"10%"}>
+            <Typography variant="h1" color={"#4cceac"}>
               WE USE LATEST MEDICAL TECHNOLOGY
             </Typography>
-            <Typography variant="h1" fontWeight={"bold"}>
-              Let Us Brighten <br /> Your Smile
+            <Typography variant="h1" fontWeight={"bold"} color={"#FFF"}>
+              Let Us Brighten Your Smile
             </Typography>
           </Stack>
         </Stack>
       </div>
       <div id="About">
-        <Stack className="About">
-          <Typography variant="h1" m={"5% auto auto 47%"} color={"#4cceac"}>
+        <Stack
+          className="About"
+          display={"flex"}
+          flexDirection={"column"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Typography variant="h1" color={"#4cceac"} mt={5}>
             About Us
           </Typography>
           <Typography variant="h4" m={"2% 20% 2% 20%"}>
@@ -194,43 +201,50 @@ const LandingPage = () => {
         </Stack>
       </div>
       <div id="Services">
-        <Typography variant="h1" m={"5% auto auto 46%"} color={"#4cceac"}>
-          Our Services
-        </Typography>
         <Stack
-          className="Services"
-          flexDirection={"row"}
-          flexWrap={"wrap"}
-          gap={4}
-          mt={"2%"}
-          justifyContent={"center"}
+          display={"flex"}
+          flexDirection={"column"}
           alignItems={"center"}
-          mb={"3%"}
+          justifyContent={"center"}
         >
-          <ServiceCard
-            serviceName={"Teeth Cleaning"}
-            serviceDescription={
-              "Regular cleaning to remove plaque and tartar, keeping your smile healthy and bright."
-            }
-          />
-          <ServiceCard
-            serviceName={"Dental Fillings"}
-            serviceDescription={
-              "Repair cavities and damage, restoring tooth structure and preventing further decay."
-            }
-          />
-          <ServiceCard
-            serviceName={"Teeth Whitening"}
-            serviceDescription={
-              " Lighten teeth color, remove stains, and enhance your smile's appearance."
-            }
-          />
-          <ServiceCard
-            serviceName={"Dental Implants"}
-            serviceDescription={
-              "Permanent solution for missing teeth, providing a natural look and feel."
-            }
-          />
+          <Typography variant="h1" color={"#4cceac"} mt={5}>
+            Our Services
+          </Typography>
+          <Stack
+            className="Services"
+            flexDirection={"row"}
+            flexWrap={"wrap"}
+            gap={4}
+            mt={"2%"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            mb={"3%"}
+          >
+            <ServiceCard
+              serviceName={"Teeth Cleaning"}
+              serviceDescription={
+                "Regular cleaning to remove plaque and tartar, keeping your smile healthy and bright."
+              }
+            />
+            <ServiceCard
+              serviceName={"Dental Fillings"}
+              serviceDescription={
+                "Repair cavities and damage, restoring tooth structure and preventing further decay."
+              }
+            />
+            <ServiceCard
+              serviceName={"Teeth Whitening"}
+              serviceDescription={
+                " Lighten teeth color, remove stains, and enhance your smile's appearance."
+              }
+            />
+            <ServiceCard
+              serviceName={"Dental Implants"}
+              serviceDescription={
+                "Permanent solution for missing teeth, providing a natural look and feel."
+              }
+            />
+          </Stack>
         </Stack>
       </div>
       <div id="Footer">

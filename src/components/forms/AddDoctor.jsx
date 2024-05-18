@@ -7,6 +7,9 @@ import {
   Select,
   FormControl,
   InputLabel,
+  Checkbox,
+  ListItemText,
+  useTheme,
 } from "@mui/material";
 
 import { Formik } from "formik";
@@ -15,7 +18,46 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 
 const AddDoctor = () => {
+  const theme = useTheme();
+
+  const checkboxColor = theme.palette.mode === "dark" ? "#868dfb" : "#a4a9fc";
+
   const genders = ["Male", "Female"];
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  const hours = [
+    "00:00",
+    "01:00",
+    "02:00",
+    "03:00",
+    "04:00",
+    "05:00",
+    "06:00",
+    "07:00",
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
+    "21:00",
+    "22:00",
+    "23:00",
+  ];
 
   const handleFormSubmit = (values) => {
     console.log(values);
@@ -29,6 +71,7 @@ const AddDoctor = () => {
   const checkoutSchema = yup.object().shape({
     firstName: yup.string().required("required"),
     lastName: yup.string(),
+    SSN: yup.string().required("required"),
     email: yup.string().email("invalid email").required("required"),
     contact: yup
       .string()
@@ -41,10 +84,20 @@ const AddDoctor = () => {
     reEnterPassword: yup.string().required("required"),
     address: yup.string().required("required"),
     dateOfBirth: yup.string().required("required"),
+    workingDays: yup
+      .array()
+      .min(1, "Select at least one day")
+      .required("required"),
+    workingHours: yup
+      .array()
+      .min(1, "Select at least one hour")
+      .required("required"),
   });
+
   const initialValues = {
     firstName: "",
     lastName: "",
+    SSN: "",
     email: "",
     contact: "",
     specialization: "",
@@ -54,6 +107,8 @@ const AddDoctor = () => {
     reEnterPassword: "",
     address: "",
     dateOfBirth: "",
+    workingDays: [],
+    workingHours: [],
   };
 
   return (
@@ -72,6 +127,7 @@ const AddDoctor = () => {
           handleBlur,
           handleChange,
           handleSubmit,
+          setFieldValue,
         }) => (
           <form onSubmit={handleSubmit}>
             <Box
@@ -107,6 +163,19 @@ const AddDoctor = () => {
                 error={!!touched.lastName && !!errors.lastName}
                 helperText={touched.lastName && errors.lastName}
                 sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="SSN"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.SSN}
+                name="SSN"
+                error={!!touched.SSN && !!errors.SSN}
+                helperText={touched.SSN && errors.SSN}
+                sx={{ gridColumn: "span 4" }}
               />
               <TextField
                 fullWidth
@@ -186,6 +255,72 @@ const AddDoctor = () => {
                 helperText={touched.reEnterPassword && errors.reEnterPassword}
                 sx={{ gridColumn: "span 2" }}
               />
+              <FormControl
+                fullWidth
+                variant="filled"
+                sx={{ gridColumn: "span 4" }}
+              >
+                <InputLabel>Working Days</InputLabel>
+                <Select
+                  multiple
+                  value={values.workingDays}
+                  onChange={(event) =>
+                    setFieldValue("workingDays", event.target.value)
+                  }
+                  onBlur={handleBlur}
+                  name="workingDays"
+                  error={!!touched.workingDays && !!errors.workingDays}
+                  renderValue={(selected) => selected.join(", ")}
+                >
+                  {days.map((day) => (
+                    <MenuItem key={day} value={day}>
+                      <Checkbox
+                        sx={{ color: `${checkboxColor}` }}
+                        checked={values.workingDays.indexOf(day) > -1}
+                      />
+                      <ListItemText primary={day} />
+                    </MenuItem>
+                  ))}
+                </Select>
+                {touched.workingDays && errors.workingDays && (
+                  <div style={{ color: "red", fontSize: 12 }}>
+                    {errors.workingDays}
+                  </div>
+                )}
+              </FormControl>
+              <FormControl
+                fullWidth
+                variant="filled"
+                sx={{ gridColumn: "span 4" }}
+              >
+                <InputLabel>Working Hours</InputLabel>
+                <Select
+                  multiple
+                  value={values.workingHours}
+                  onChange={(event) =>
+                    setFieldValue("workingHours", event.target.value)
+                  }
+                  onBlur={handleBlur}
+                  name="workingHours"
+                  error={!!touched.workingHours && !!errors.workingHours}
+                  renderValue={(selected) => selected.join(", ")}
+                >
+                  {hours.map((hour) => (
+                    <MenuItem key={hour} value={hour}>
+                      <Checkbox
+                        sx={{ color: `${checkboxColor}` }}
+                        checked={values.workingHours.indexOf(hour) > -1}
+                      />
+                      <ListItemText primary={hour} />
+                    </MenuItem>
+                  ))}
+                </Select>
+                {touched.workingHours && errors.workingHours && (
+                  <div style={{ color: "red", fontSize: 12 }}>
+                    {errors.workingHours}
+                  </div>
+                )}
+              </FormControl>
               <FormControl
                 fullWidth
                 variant="filled"

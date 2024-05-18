@@ -1989,6 +1989,7 @@ export const mockDataInvoices = [
     discount: 50,
     total: 150,
     invoiceID: "INV-011",
+    status: "Paid",
   },
   {
     id: 12,
@@ -1998,6 +1999,7 @@ export const mockDataInvoices = [
     discount: 55,
     total: 155,
     invoiceID: "INV-012",
+    status: "Paid",
   },
   {
     id: 13,
@@ -2007,6 +2009,7 @@ export const mockDataInvoices = [
     discount: 60,
     total: 160,
     invoiceID: "INV-013",
+    status: "Paid",
   },
   {
     id: 14,
@@ -2016,6 +2019,7 @@ export const mockDataInvoices = [
     discount: 65,
     total: 165,
     invoiceID: "INV-014",
+    status: "Paid",
   },
   {
     id: 15,
@@ -2025,6 +2029,7 @@ export const mockDataInvoices = [
     discount: 70,
     total: 170,
     invoiceID: "INV-015",
+    status: "Paid",
   },
   {
     id: 16,
@@ -2034,6 +2039,7 @@ export const mockDataInvoices = [
     discount: 75,
     total: 175,
     invoiceID: "INV-016",
+    status: "Paid",
   },
   {
     id: 17,
@@ -2043,6 +2049,7 @@ export const mockDataInvoices = [
     discount: 80,
     total: 180,
     invoiceID: "INV-017",
+    status: "Paid",
   },
   {
     id: 18,
@@ -2052,6 +2059,7 @@ export const mockDataInvoices = [
     discount: 85,
     total: 185,
     invoiceID: "INV-018",
+    status: "Paid",
   },
   {
     id: 19,
@@ -2061,6 +2069,7 @@ export const mockDataInvoices = [
     discount: 90,
     total: 190,
     invoiceID: "INV-019",
+    status: "Paid",
   },
   {
     id: 20,
@@ -2070,6 +2079,7 @@ export const mockDataInvoices = [
     discount: 95,
     total: 195,
     invoiceID: "INV-020",
+    status: "Paid",
   },
   {
     id: 21,
@@ -2079,6 +2089,7 @@ export const mockDataInvoices = [
     discount: 100,
     total: 200,
     invoiceID: "INV-021",
+    status: "Paid",
   },
   {
     id: 22,
@@ -2088,6 +2099,7 @@ export const mockDataInvoices = [
     discount: 105,
     total: 205,
     invoiceID: "INV-022",
+    status: "Paid",
   },
   {
     id: 23,
@@ -2097,6 +2109,7 @@ export const mockDataInvoices = [
     discount: 110,
     total: 210,
     invoiceID: "INV-023",
+    status: "Paid",
   },
   {
     id: 24,
@@ -2106,6 +2119,7 @@ export const mockDataInvoices = [
     discount: 115,
     total: 215,
     invoiceID: "INV-024",
+    status: "Paid",
   },
   {
     id: 25,
@@ -2115,6 +2129,7 @@ export const mockDataInvoices = [
     discount: 120,
     total: 220,
     invoiceID: "INV-025",
+    status: "Paid",
   },
   {
     id: 26,
@@ -2124,6 +2139,7 @@ export const mockDataInvoices = [
     discount: 125,
     total: 225,
     invoiceID: "INV-026",
+    status: "Paid",
   },
   {
     id: 27,
@@ -2133,6 +2149,7 @@ export const mockDataInvoices = [
     discount: 130,
     total: 230,
     invoiceID: "INV-027",
+    status: "Paid",
   },
   {
     id: 28,
@@ -2142,6 +2159,7 @@ export const mockDataInvoices = [
     discount: 135,
     total: 235,
     invoiceID: "INV-028",
+    status: "Paid",
   },
   {
     id: 29,
@@ -2151,6 +2169,7 @@ export const mockDataInvoices = [
     discount: 140,
     total: 240,
     invoiceID: "INV-029",
+    status: "Paid",
   },
   {
     id: 30,
@@ -2160,6 +2179,7 @@ export const mockDataInvoices = [
     discount: 145,
     total: 245,
     invoiceID: "INV-030",
+    status: "Paid",
   },
   {
     id: 31,
@@ -2169,6 +2189,7 @@ export const mockDataInvoices = [
     discount: 150,
     total: 250,
     invoiceID: "INV-031",
+    status: "Paid",
   },
   {
     id: 32,
@@ -2178,6 +2199,7 @@ export const mockDataInvoices = [
     discount: 155,
     total: 255,
     invoiceID: "INV-032",
+    status: "Paid",
   },
   {
     id: 33,
@@ -2187,6 +2209,7 @@ export const mockDataInvoices = [
     discount: 160,
     total: 260,
     invoiceID: "INV-033",
+    status: "Paid",
   },
   {
     id: 34,
@@ -2196,6 +2219,7 @@ export const mockDataInvoices = [
     discount: 165,
     total: 265,
     invoiceID: "INV-034",
+    status: "Paid",
   },
   {
     id: 35,
@@ -2205,6 +2229,7 @@ export const mockDataInvoices = [
     discount: 170,
     total: 270,
     invoiceID: "INV-035",
+    status: "Paid",
   },
   {
     id: 36,
@@ -2214,6 +2239,7 @@ export const mockDataInvoices = [
     discount: 175,
     total: 275,
     invoiceID: "INV-036",
+    status: "Paid",
   },
   {
     id: 37,
@@ -2223,6 +2249,7 @@ export const mockDataInvoices = [
     discount: 180,
     total: 280,
     invoiceID: "INV-037",
+    status: "Paid",
   },
   {
     id: 38,
@@ -2232,6 +2259,7 @@ export const mockDataInvoices = [
     discount: 185,
     total: 285,
     invoiceID: "INV-038",
+    status: "Paid",
   },
   {
     id: 39,
@@ -2241,6 +2269,7 @@ export const mockDataInvoices = [
     discount: 190,
     total: 290,
     invoiceID: "INV-039",
+    status: "Paid",
   },
   {
     id: 40,
@@ -2250,6 +2279,7 @@ export const mockDataInvoices = [
     discount: 195,
     total: 295,
     invoiceID: "INV-040",
+    status: "Paid",
   },
   {
     id: 41,
@@ -2259,6 +2289,7 @@ export const mockDataInvoices = [
     discount: 200,
     total: 300,
     invoiceID: "INV-041",
+    status: "Paid",
   },
   {
     id: 42,
@@ -2268,6 +2299,7 @@ export const mockDataInvoices = [
     discount: 205,
     total: 305,
     invoiceID: "INV-042",
+    status: "Paid",
   },
   {
     id: 43,
@@ -2277,6 +2309,7 @@ export const mockDataInvoices = [
     discount: 210,
     total: 310,
     invoiceID: "INV-043",
+    status: "Paid",
   },
   {
     id: 44,
@@ -2286,6 +2319,7 @@ export const mockDataInvoices = [
     discount: 215,
     total: 315,
     invoiceID: "INV-044",
+    status: "Paid",
   },
   {
     id: 45,
@@ -2295,6 +2329,7 @@ export const mockDataInvoices = [
     discount: 220,
     total: 320,
     invoiceID: "INV-045",
+    status: "Paid",
   },
   {
     id: 46,
@@ -2304,6 +2339,7 @@ export const mockDataInvoices = [
     discount: 225,
     total: 325,
     invoiceID: "INV-046",
+    status: "Paid",
   },
   {
     id: 47,
@@ -2313,6 +2349,7 @@ export const mockDataInvoices = [
     discount: 230,
     total: 330,
     invoiceID: "INV-047",
+    status: "Paid",
   },
   {
     id: 48,
@@ -2322,6 +2359,7 @@ export const mockDataInvoices = [
     discount: 235,
     total: 335,
     invoiceID: "INV-048",
+    status: "Paid",
   },
   {
     id: 49,
@@ -2331,6 +2369,7 @@ export const mockDataInvoices = [
     discount: 240,
     total: 340,
     invoiceID: "INV-049",
+    status: "Paid",
   },
   {
     id: 50,
@@ -2340,8 +2379,53 @@ export const mockDataInvoices = [
     discount: 245,
     total: 345,
     invoiceID: "INV-050",
+    status: "Paid",
   },
 ];
+export const mockDataPurchases = [
+  {
+    id: 1,
+    purchaseID: "PUR-001",
+    purchaseDate: "2024-05-01",
+    cost: 50,
+    quantityPurchased: 100,
+    supplier: "Supplier A",
+  },
+  {
+    id: 2,
+    purchaseID: "PUR-002",
+    purchaseDate: "2024-05-02",
+    cost: 60,
+    quantityPurchased: 120,
+    supplier: "Supplier B",
+  },
+  {
+    id: 3,
+    purchaseID: "PUR-003",
+    purchaseDate: "2024-05-03",
+    cost: 70,
+    quantityPurchased: 140,
+    supplier: "Supplier C",
+  },
+  {
+    id: 4,
+    purchaseID: "PUR-004",
+    purchaseDate: "2024-05-04",
+    cost: 80,
+    quantityPurchased: 160,
+    supplier: "Supplier D",
+  },
+  {
+    id: 5,
+    purchaseID: "PUR-005",
+    purchaseDate: "2024-05-05",
+    cost: 90,
+    quantityPurchased: 180,
+    supplier: "Supplier E",
+  },
+  // Add more objects as needed
+];
+
 export const mockDataAppointments = [
   {
     id: 1,

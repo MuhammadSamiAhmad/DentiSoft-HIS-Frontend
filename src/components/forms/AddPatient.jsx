@@ -31,6 +31,7 @@ const AddPatient = () => {
   const checkoutSchema = yup.object().shape({
     firstName: yup.string().required("required"),
     lastName: yup.string(),
+    SSN: yup.string().required("required"),
     email: yup.string().email("invalid email").required("required"),
     contact: yup
       .string()
@@ -43,10 +44,13 @@ const AddPatient = () => {
     reEnterPassword: yup.string().required("required"),
     address: yup.string().required("required"),
     dateOfBirth: yup.string().required("required"),
+    insuranceCompany: yup.string(),
+    coverageRate: yup.number().positive("Rate must be a positive percent"),
   });
   const initialValues = {
     firstName: "",
     lastName: "",
+    SSN: "",
     email: "",
     contact: "",
     gender: "",
@@ -56,6 +60,8 @@ const AddPatient = () => {
     reEnterPassword: "",
     address: "",
     dateOfBirth: "",
+    insuranceCompany: "",
+    coverageRate: "",
   };
 
   return (
@@ -109,6 +115,19 @@ const AddPatient = () => {
                 error={!!touched.lastName && !!errors.lastName}
                 helperText={touched.lastName && errors.lastName}
                 sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="SSN"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.SSN}
+                name="SSN"
+                error={!!touched.SSN && !!errors.SSN}
+                helperText={touched.SSN && errors.SSN}
+                sx={{ gridColumn: "span 4" }}
               />
               <TextField
                 fullWidth
@@ -247,6 +266,32 @@ const AddPatient = () => {
                 error={!!touched.dateOfBirth && !!errors.dateOfBirth}
                 helperText={touched.dateOfBirth && errors.dateOfBirth}
                 sx={{ gridColumn: "span 4" }}
+              />{" "}
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Insurance Provider(Company)"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.insuranceCompany}
+                name="insuranceCompany"
+                error={!!touched.insuranceCompany && !!errors.insuranceCompany}
+                helperText={touched.insuranceCompany && errors.insuranceCompany}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Coverage Rate"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.coverageRate}
+                name="coverageRate"
+                error={!!touched.coverageRate && !!errors.coverageRate}
+                helperText={touched.coverageRate && errors.coverageRate}
+                sx={{ gridColumn: "span 2" }}
               />
             </Box>
             <Box display="flex" justifyContent="start" mt="20px">

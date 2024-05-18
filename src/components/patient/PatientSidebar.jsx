@@ -99,7 +99,7 @@ const PatientSidebar = () => {
           </Box>
         )}
 
-        <Stack gap={2} paddingLeft={isCollapsed ? undefined : "3%"}>
+        <Stack gap={2}>
           <NavLink to={"patientDashboard"}>
             <Item
               title="Dashboard"

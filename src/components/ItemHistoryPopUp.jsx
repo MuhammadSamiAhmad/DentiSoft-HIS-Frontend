@@ -4,12 +4,12 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import CloseIcon from "@mui/icons-material/Close";
-import EditItem from "./forms/EditItem";
+import EquipmentTable from "./EquipmentTable";
 import Header from "./Header";
 
-import EditIcon from "@mui/icons-material/Edit";
+import HistoryIcon from "@mui/icons-material/History";
 
-const EditItemPopUp = () => {
+const ItemHistoryPopUp = () => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -22,8 +22,8 @@ const EditItemPopUp = () => {
   return (
     <React.Fragment>
       <Button
-        startIcon={<EditIcon />}
-        color="warning"
+        startIcon={<HistoryIcon />}
+        color="info"
         variant="contained"
         sx={{
           display: "flex",
@@ -47,7 +47,7 @@ const EditItemPopUp = () => {
             alignItems={"start"}
             justifyContent={"space-between"}
           >
-            <Header title="Edit Equipment Info" />
+            <Header title="Equipment History" />
             <Button
               startIcon={<CloseIcon />}
               color="primary"
@@ -64,11 +64,11 @@ const EditItemPopUp = () => {
           </Stack>
         </DialogTitle>
         <DialogContent>
-          <EditItem />
+          <EquipmentTable />
         </DialogContent>
       </Dialog>
     </React.Fragment>
   );
 };
 
-export default EditItemPopUp;
+export default ItemHistoryPopUp;

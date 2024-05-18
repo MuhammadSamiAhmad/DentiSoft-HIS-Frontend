@@ -5,21 +5,19 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const EditItem = () => {
+const PurchaseItem = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const equipmentSchema = yup.object().shape({
-    name: yup.string().required("Name is required"),
-    supplier: yup.string().required("Supplier is required"),
-    manufacturer: yup.string().required("Manufacturer is required"),
-    description: yup.string().required("Description is required"),
+    quantity: yup.number().positive("Quantity must be a positive number"),
+    purchaseDate: yup.date(),
+    cost: yup.number().positive("Cost must be a positive number"),
   });
 
   const initialValues = {
-    name: "",
-    supplier: "",
-    manufacturer: "",
-    description: "",
+    quantity: "",
+    purchaseDate: "",
+    cost: "",
   };
 
   const handleFormSubmit = (values) => {
@@ -55,51 +53,40 @@ const EditItem = () => {
                 sx={{ gridColumn: "span 2" }}
                 fullWidth
                 variant="filled"
-                label="Name"
-                name="name"
-                value={values.name}
+                label="Quantity"
+                type="number"
+                name="quantity"
+                value={values.quantity}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={touched.name && !!errors.name}
-                helperText={touched.name && errors.name}
+                error={touched.quantity && !!errors.quantity}
+                helperText={touched.quantity && errors.quantity}
               />
               <TextField
                 sx={{ gridColumn: "span 2" }}
                 fullWidth
                 variant="filled"
-                label="Supplier"
-                name="supplier"
-                value={values.supplier}
+                label="Cost"
+                type="number"
+                name="cost"
+                value={values.cost}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={touched.supplier && !!errors.supplier}
-                helperText={touched.supplier && errors.supplier}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                multiline
-                rows={4}
-                label="Description"
-                name="description"
-                value={values.description}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.description && !!errors.description}
-                helperText={touched.description && errors.description}
-                sx={{ gridColumn: "span 4" }}
+                error={touched.cost && !!errors.cost}
+                helperText={touched.cost && errors.cost}
               />
               <TextField
                 sx={{ gridColumn: "span 4" }}
                 fullWidth
                 variant="filled"
-                label="Manufacturer"
-                name="manufacturer"
-                value={values.manufacturer}
+                label="Purchase Date"
+                type="date"
+                name="purchaseDate"
+                value={values.purchaseDate}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={touched.manufacturer && !!errors.manufacturer}
-                helperText={touched.manufacturer && errors.manufacturer}
+                error={touched.purchaseDate && !!errors.purchaseDate}
+                helperText={touched.purchaseDate && errors.purchaseDate}
               />
             </Box>
             <Box display="flex" justifyContent="start" mt="20px">
@@ -109,7 +96,7 @@ const EditItem = () => {
                 color="secondary"
                 size="large"
               >
-                Apply
+                Add
               </Button>
             </Box>
           </form>
@@ -119,4 +106,4 @@ const EditItem = () => {
   );
 };
 
-export default EditItem;
+export default PurchaseItem;

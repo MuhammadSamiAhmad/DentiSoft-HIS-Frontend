@@ -4,12 +4,12 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import CloseIcon from "@mui/icons-material/Close";
-import EditItem from "./forms/EditItem";
+import PurchaseItem from "./forms/PurchaseItem";
 import Header from "./Header";
 
-import EditIcon from "@mui/icons-material/Edit";
+import AddIcon from "@mui/icons-material/Add";
 
-const EditItemPopUp = () => {
+const PurchaseItemPopUp = () => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -22,8 +22,8 @@ const EditItemPopUp = () => {
   return (
     <React.Fragment>
       <Button
-        startIcon={<EditIcon />}
-        color="warning"
+        startIcon={<AddIcon />}
+        color="success"
         variant="contained"
         sx={{
           display: "flex",
@@ -47,7 +47,7 @@ const EditItemPopUp = () => {
             alignItems={"start"}
             justifyContent={"space-between"}
           >
-            <Header title="Edit Equipment Info" />
+            <Header title="Add Item" />
             <Button
               startIcon={<CloseIcon />}
               color="primary"
@@ -64,11 +64,11 @@ const EditItemPopUp = () => {
           </Stack>
         </DialogTitle>
         <DialogContent>
-          <EditItem />
+          <PurchaseItem />
         </DialogContent>
       </Dialog>
     </React.Fragment>
   );
 };
 
-export default EditItemPopUp;
+export default PurchaseItemPopUp;

@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PatientInfo from "./pages/PatientInfo";
 
-import CreateAppointment from "./components/forms/CreateAppointment";
+import BookAppointment from "./components/forms/BookAppointment";
 import ProfileSettings from "./components/forms/ProfileSettings";
 //Importing Admin components (Sidebar Items)
 import AdminDashboard from "./components/admin/AdminDashboard";
@@ -20,6 +20,7 @@ import AdminAppointments from "./components/admin/AdminAppointments";
 import AdminPatients from "./components/admin/AdminPatients";
 import Inventory from "./components/admin/Inventory";
 import AddEquipmentForm from "./components/forms/AddEquipment";
+import ServiceCostForm from "./components/forms/ServiceCost";
 //Importing Patient components (Sidebar Items)
 import PatientDashboard from "./components/patient/PatientDashboard";
 import PatientPortal from "./components/patient/PatientPortal";
@@ -57,19 +58,19 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="login/layout" element={<Layout person={person} />}>
             <Route path="adminDashboard" element={<AdminDashboard />} />
-            <Route path="createAppointment" element={<CreateAppointment />} />
             <Route path="adminDoctors" element={<AdminDoctors />} />
             <Route path="addDoctor" element={<AddDoctor />} />
             <Route path="adminAppointments" element={<AdminAppointments />} />
             <Route path="settings" element={<ProfileSettings />} />
             <Route path="inventory" element={<Inventory />} />
             <Route path="addEquipment" element={<AddEquipmentForm />} />
+            <Route path="services" element={<ServiceCostForm />} />
             <Route path="patients" element={<AdminPatients />} />
             <Route path="addPatient" element={<AddPatient />} />
 
             <Route path="patientDashboard" element={<PatientDashboard />} />
             <Route path="patientPortal" element={<PatientPortal />} />
-            <Route path="bookAppointment" element={<CreateAppointment />} />
+            <Route path="bookAppointment" element={<BookAppointment />} />
             <Route
               path="patientAppointments"
               element={<PatientAppointments />}

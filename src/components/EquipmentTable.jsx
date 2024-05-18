@@ -1,60 +1,33 @@
-import { Box, useTheme, Button } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../theme";
-import { mockDataInvoices } from "../data/mockData";
+import { mockDataPurchases } from "../data/mockData";
 
-const EditPatientInvoices = () => {
+const EquipmentTable = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "invoiceID", headerName: "Billing ID" },
     {
-      field: "date",
-      type: "Date",
+      field: "purchaseID",
+      headerName: "Purchase ID",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "purchaseDate",
+      type: "Purchase Date",
       headerName: "Date",
       flex: 1,
     },
     {
       field: "cost",
-      headerName: "Total Cost",
-      flex: 1,
-    },
-
-    {
-      field: "doctorName",
-      headerName: "Doctor Name",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "discount",
-      headerName: "Insurance Coverage",
+      headerName: "Cost",
       flex: 1,
     },
     {
-      field: "total",
-      headerName: "Total After Insurance",
+      field: "quantityPurchased",
+      headerName: "Quantity Purchased",
       flex: 1,
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      flex: 1,
-      renderCell: (params) => (
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: params.row.status === "Paid" ? "green" : "red",
-          }}
-          onClick={() => {
-            params.row.status === "Paid"
-              ? (params.row.status = "UnPaid")
-              : (params.row.status = "Paid");
-          }}
-        >
-          {params.row.status}
-        </Button>
-      ),
     },
   ];
 
@@ -93,10 +66,10 @@ const EditPatientInvoices = () => {
           },
         }}
       >
-        <DataGrid rows={mockDataInvoices} columns={columns} />
+        <DataGrid rows={mockDataPurchases} columns={columns} />
       </Box>
     </Box>
   );
 };
 
-export default EditPatientInvoices;
+export default EquipmentTable;

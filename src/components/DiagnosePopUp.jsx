@@ -35,9 +35,9 @@ const DiagnosePopUp = () => {
         <DialogTitle>
           <Stack
             display={"flex"}
-            gap={12}
             direction={"row"}
             alignItems={"start"}
+            justifyContent={"space-between"}
           >
             <Header title="Diagnose Form" />
             <Button
@@ -48,7 +48,7 @@ const DiagnosePopUp = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                pl: "7%",
+                pl: "3%",
                 ":hover": { backgroundColor: "red" },
               }}
               onClick={handleClose}

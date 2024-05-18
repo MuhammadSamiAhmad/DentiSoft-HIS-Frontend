@@ -42,6 +42,8 @@ const Register = () => {
     password: yup.string().required("required"),
     address: yup.string().required("required"),
     dateOfBirth: yup.string().required("required"),
+    insuranceCompany: yup.string(),
+    coverageRate: yup.number().positive("Rate must be a positive percent"),
   });
   const initialValues = {
     firstName: "",
@@ -53,6 +55,8 @@ const Register = () => {
     password: "",
     address: "",
     dateOfBirth: "",
+    insuranceCompany: "",
+    coverageRate: "",
   };
 
   return (
@@ -207,6 +211,32 @@ const Register = () => {
                 error={!!touched.dateOfBirth && !!errors.dateOfBirth}
                 helperText={touched.dateOfBirth && errors.dateOfBirth}
                 sx={{ gridColumn: "span 4" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Insurance Provider(Company)"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.insuranceCompany}
+                name="insuranceCompany"
+                error={!!touched.insuranceCompany && !!errors.insuranceCompany}
+                helperText={touched.insuranceCompany && errors.insuranceCompany}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Coverage Rate"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.coverageRate}
+                name="coverageRate"
+                error={!!touched.coverageRate && !!errors.coverageRate}
+                helperText={touched.coverageRate && errors.coverageRate}
+                sx={{ gridColumn: "span 2" }}
               />
             </Box>
             <Box display="flex" justifyContent="start" mt="20px">

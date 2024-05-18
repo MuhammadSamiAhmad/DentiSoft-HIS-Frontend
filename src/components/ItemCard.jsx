@@ -8,6 +8,9 @@ import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import WarehouseIcon from "@mui/icons-material/Warehouse";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditItemPopUp from "./EditItemPopUp";
+import RemoveIcon from "@mui/icons-material/Remove";
+import PurchaseItemPopUp from "./PurchaseItemPopUp";
+import ItemHistoryPopUp from "./ItemHistoryPopUp";
 
 const ItemCard = ({ item, handleDelete }) => {
   const theme = useTheme();
@@ -110,7 +113,24 @@ const ItemCard = ({ item, handleDelete }) => {
               handleDelete(item.ItemID);
             }}
           ></Button>
+          <Button
+            startIcon={<RemoveIcon />}
+            color="error"
+            variant="contained"
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: "50px",
+              pr: "2%",
+            }}
+            onClick={() => {
+              //Quantity--
+            }}
+          ></Button>
+          <PurchaseItemPopUp />
           <EditItemPopUp />
+          <ItemHistoryPopUp />
         </Stack>
       </Stack>
     </Box>

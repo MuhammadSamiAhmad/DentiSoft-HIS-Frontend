@@ -47,7 +47,7 @@ const EditDialog = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                pl: "5%",
+                pl: "3%",
                 ":hover": { backgroundColor: "red" },
               }}
               onClick={handleClose}

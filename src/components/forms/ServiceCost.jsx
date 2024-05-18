@@ -1,25 +1,23 @@
 import React from "react";
 import { Box, Button, TextField } from "@mui/material";
-
 import { Formik } from "formik";
 import * as yup from "yup";
+import Header from "../../components/Header";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const EditItem = () => {
+const AddEquipmentForm = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const equipmentSchema = yup.object().shape({
-    name: yup.string().required("Name is required"),
-    supplier: yup.string().required("Supplier is required"),
-    manufacturer: yup.string().required("Manufacturer is required"),
-    description: yup.string().required("Description is required"),
+    consultationCost: yup.string(),
+    examinationCost: yup.string(),
+    surgeryCost: yup.string(),
   });
 
   const initialValues = {
-    name: "",
-    supplier: "",
-    manufacturer: "",
-    description: "",
+    consultationCost: "",
+    examinationCost: "",
+    surgeryCost: "",
   };
 
   const handleFormSubmit = (values) => {
@@ -29,6 +27,8 @@ const EditItem = () => {
 
   return (
     <Box m="20px">
+      <Header title="Services" subtitle={"Set the Clinic Services Costs"} />
+
       <Formik
         initialValues={initialValues}
         validationSchema={equipmentSchema}
@@ -52,54 +52,40 @@ const EditItem = () => {
               }}
             >
               <TextField
-                sx={{ gridColumn: "span 2" }}
-                fullWidth
-                variant="filled"
-                label="Name"
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.name && !!errors.name}
-                helperText={touched.name && errors.name}
-              />
-              <TextField
-                sx={{ gridColumn: "span 2" }}
-                fullWidth
-                variant="filled"
-                label="Supplier"
-                name="supplier"
-                value={values.supplier}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.supplier && !!errors.supplier}
-                helperText={touched.supplier && errors.supplier}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                multiline
-                rows={4}
-                label="Description"
-                name="description"
-                value={values.description}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.description && !!errors.description}
-                helperText={touched.description && errors.description}
                 sx={{ gridColumn: "span 4" }}
+                fullWidth
+                variant="filled"
+                label="Examination Cost"
+                name="examinationCost"
+                value={values.examinationCost}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.examinationCost && !!errors.examinationCost}
+                helperText={touched.examinationCost && errors.examinationCost}
               />
               <TextField
                 sx={{ gridColumn: "span 4" }}
                 fullWidth
                 variant="filled"
-                label="Manufacturer"
-                name="manufacturer"
-                value={values.manufacturer}
+                label="Consultation Cost"
+                name="consultationCost"
+                value={values.consultationCost}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={touched.manufacturer && !!errors.manufacturer}
-                helperText={touched.manufacturer && errors.manufacturer}
+                error={touched.consultationCost && !!errors.consultationCost}
+                helperText={touched.consultationCost && errors.consultationCost}
+              />
+              <TextField
+                sx={{ gridColumn: "span 4" }}
+                fullWidth
+                variant="filled"
+                label="Surgery Cost"
+                name="surgeryCost"
+                value={values.surgeryCost}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.surgeryCost && !!errors.surgeryCost}
+                helperText={touched.surgeryCost && errors.surgeryCost}
               />
             </Box>
             <Box display="flex" justifyContent="start" mt="20px">
@@ -109,8 +95,8 @@ const EditItem = () => {
                 color="secondary"
                 size="large"
               >
-                Apply
-              </Button>
+                Confirm
+              </Button>{" "}
             </Box>
           </form>
         )}
@@ -119,4 +105,4 @@ const EditItem = () => {
   );
 };
 
-export default EditItem;
+export default AddEquipmentForm;

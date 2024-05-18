@@ -56,7 +56,7 @@ const EditDoctorPopUp = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                pl: "6%",
+                pl: "3%",
                 ":hover": { backgroundColor: "red" },
               }}
               onClick={handleClose}

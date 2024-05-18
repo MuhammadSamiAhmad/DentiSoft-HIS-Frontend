@@ -26,22 +26,21 @@ const EditDoctor = () => {
     /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
   const checkoutSchema = yup.object().shape({
-    firstName: yup.string().required("required"),
+    firstName: yup.string(),
     lastName: yup.string(),
-    email: yup.string().email("invalid email").required("required"),
-    contact: yup
-      .string()
-      .matches(phoneRegExp, "Phone number is not valid")
-      .required("required"),
-    specialization: yup.string().required("required"),
-    degree: yup.string().required("required"),
-    gender: yup.string().required("required"),
-    address: yup.string().required("required"),
-    dateOfBirth: yup.string().required("required"),
+    SSN: yup.string(),
+    email: yup.string().email("invalid email"),
+    contact: yup.string().matches(phoneRegExp, "Phone number is not valid"),
+    specialization: yup.string(),
+    degree: yup.string(),
+    gender: yup.string(),
+    address: yup.string(),
+    dateOfBirth: yup.string(),
   });
   const initialValues = {
     firstName: "",
     lastName: "",
+    SSN: "",
     email: "",
     contact: "",
     specialization: "",
@@ -100,6 +99,19 @@ const EditDoctor = () => {
                 error={!!touched.lastName && !!errors.lastName}
                 helperText={touched.lastName && errors.lastName}
                 sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="SSN"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.SSN}
+                name="SSN"
+                error={!!touched.SSN && !!errors.SSN}
+                helperText={touched.SSN && errors.SSN}
+                sx={{ gridColumn: "span 4" }}
               />
               <TextField
                 fullWidth

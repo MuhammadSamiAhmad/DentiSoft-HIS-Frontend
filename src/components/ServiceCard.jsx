@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, useTheme, Stack, Typography } from "@mui/material";
 import { tokens } from "../theme";
-import Image from "../assets/images/Dentist.jpeg"; // Import using relative path
+import Image from "../assets/images/WhatsApp Image 2024-05-15 at 1.47.21 PM.jpeg";
 
 const ServiceCard = ({ serviceName, serviceDescription }) => {
   const theme = useTheme();
@@ -22,11 +22,12 @@ const ServiceCard = ({ serviceName, serviceDescription }) => {
         maxHeight: "90vh",
         backgroundColor: colorStyle,
         p: "3% 4% 4% 4%",
-        boxShadow: `1px 1px 15px ${shadowBorderColor}`,
+        boxShadow: `1px 1px 8px ${shadowBorderColor}`,
         borderRadius: "10px",
         ":hover": {
-          transition: "all .3s ease-out",
-          transform: "translateY(-10px)",
+          transition: "all 0.5s ease-out",
+          scale: "1.1",
+          opacity: "0.9",
         },
         marginLeft: "3%",
         backgroundImage: `url(${Image})`,

@@ -12,6 +12,8 @@ import BloodtypeIcon from "@mui/icons-material/Bloodtype";
 import HomeIcon from "@mui/icons-material/Home";
 import "../PatientSidebar.css";
 
+import CreateAppPopUp from "./CreateAppPopUp";
+
 const PatientCardAdmin = ({ patient, handleDelete }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -124,6 +126,7 @@ const PatientCardAdmin = ({ patient, handleDelete }) => {
         ></Button>
         <EditPatientPopUp />
         <EditPatientInvoicesPopUp />
+        <CreateAppPopUp />
       </Stack>
     </Box>
   );

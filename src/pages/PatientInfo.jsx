@@ -34,11 +34,11 @@ const PatientInfo = () => {
   const checkoutSchema = yup.object().shape({
     chronicDiseaseStatus: yup.string(),
     chronicDiseases: yup.string(),
-    alcoholStatus: yup.string(),
-    smokingStatus: yup.string(),
+    alcoholStatus: yup.string().required(),
+    smokingStatus: yup.string().required(),
     allergyStatus: yup.string(),
     allergies: yup.string(),
-    bloodGroup: yup.string(),
+    bloodGroup: yup.string().required(),
   });
   const initialValues = {
     chronicDiseaseStatus: "",
