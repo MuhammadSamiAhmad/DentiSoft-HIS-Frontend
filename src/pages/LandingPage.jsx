@@ -6,7 +6,45 @@ import { Box, Stack, Typography, Button, useTheme } from "@mui/material";
 import ServiceCard from "../components/ServiceCard";
 import Logo from "../assets/images/Logo.jpeg";
 
+import serviceImage1 from "../assets/images/service_1.jpeg";
+import serviceImage2 from "../assets/images/service_2.jpeg";
+import serviceImage3 from "../assets/images/service_3.jpeg";
+import serviceImage4 from "../assets/images/service_4.jpeg";
+import FooterImage from "../assets/images/footer image.png";
+
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
 const LandingPage = () => {
+  const services = [
+    {
+      name: "Teeth Cleaning",
+      description:
+        "Regular cleaning to remove plaque and tartar, keeping your smile healthy and bright.",
+      image: serviceImage1,
+    },
+    {
+      name: "Dental Fillings",
+      description:
+        "Repair cavities and damage, restoring tooth structure and preventing further decay.",
+      image: serviceImage2,
+    },
+    {
+      name: "Teeth Whitening",
+      description:
+        "Lighten teeth color, remove stains, and enhance your smile's appearance.",
+      image: serviceImage3,
+    },
+    {
+      name: "Dental Implants",
+      description:
+        "Permanent solution for missing teeth, providing a natural look and feel.",
+      image: serviceImage4,
+    },
+  ];
+
   let navigate = useNavigate();
 
   const theme = useTheme();
@@ -18,12 +56,12 @@ const LandingPage = () => {
         display: "flex",
         flexDirection: "column",
       }}
+      maxWidth={"100vw"}
     >
       <Stack
         className="NavBar"
         flexDirection={"row"}
         justifyContent={"space-between"}
-        sx={{ height: "10vh" }}
       >
         <img
           src={Logo}
@@ -32,10 +70,18 @@ const LandingPage = () => {
             width: "70px",
             height: "70px",
             borderRadius: "50%",
-            margin: "10px 10px 10px 50px",
+            marginLeft: "2%",
+            marginBottom: "0.5%",
+            marginTop: "0.5%",
           }}
         />
-        <Stack className="Links" flexDirection={"row"} gap={7} mr={"3%"}>
+        <Stack
+          className="Links"
+          flexDirection={"row"}
+          gap={6}
+          mr={"3%"}
+          flexWrap={"wrap"}
+        >
           <Link
             smooth={true}
             offset={50}
@@ -119,6 +165,7 @@ const LandingPage = () => {
               variant="h3"
               fontWeight={"bold"}
               width={"114px"}
+              mr={3}
               sx={{
                 ":hover": {
                   color: "#36987f",
@@ -138,8 +185,8 @@ const LandingPage = () => {
             size="large"
             color="primary"
             sx={{
-              margin: "30px 10px 30px 10px",
-              padding: "3.5% 9% 3.5% 9% ",
+              marginTop: "3%",
+              marginBottom: "3%",
               ":hover": {
                 backgroundColor: "#36987f",
                 transition: "all .3s ease-out",
@@ -220,35 +267,105 @@ const LandingPage = () => {
             alignItems={"center"}
             mb={"3%"}
           >
-            <ServiceCard
-              serviceName={"Teeth Cleaning"}
-              serviceDescription={
-                "Regular cleaning to remove plaque and tartar, keeping your smile healthy and bright."
-              }
-            />
-            <ServiceCard
-              serviceName={"Dental Fillings"}
-              serviceDescription={
-                "Repair cavities and damage, restoring tooth structure and preventing further decay."
-              }
-            />
-            <ServiceCard
-              serviceName={"Teeth Whitening"}
-              serviceDescription={
-                " Lighten teeth color, remove stains, and enhance your smile's appearance."
-              }
-            />
-            <ServiceCard
-              serviceName={"Dental Implants"}
-              serviceDescription={
-                "Permanent solution for missing teeth, providing a natural look and feel."
-              }
-            />
+            {services.map((service, index) => (
+              <ServiceCard
+                key={index}
+                serviceName={service.name}
+                serviceDescription={service.description}
+                Image={service.image}
+              />
+            ))}
           </Stack>
         </Stack>
       </div>
       <div id="Footer">
-        <Stack className="Footer" sx={{ backgroundColor: "black" }}></Stack>
+        <Stack
+          className="Footer"
+          sx={{ backgroundColor: "rgb(26,28,34)" }}
+          justifyContent={"center"}
+          alignItems={"center"}
+          flexDirection={"column"}
+          gap={3}
+        >
+          <img
+            src={FooterImage}
+            alt="tooth logo"
+            width={"100px"}
+            height={"100px"}
+          />{" "}
+          <hr
+            style={{
+              width: "100%",
+            }}
+          />
+          <Typography
+            variant="h3"
+            fontSize={"20px"}
+            color={"#FFF"}
+            width={"30%"}
+            mb={2}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            Your health and well-being are our top priorities. Contact us today
+            to schedule an appointment and experience the difference in
+            personalized healthcare.
+          </Typography>
+          <Stack
+            display={"flex"}
+            flexDirection={"row"}
+            gap={5}
+            mb={10}
+            justifyContent={"space-evenly"}
+            alignItems={"center"}
+          >
+            <InstagramIcon
+              color="secondary"
+              sx={{
+                fontSize: 40,
+                ":hover": {
+                  cursor: "pointer",
+                  transition: "all .3s ease-out",
+                  transform: "translateY(-5px)",
+                },
+              }}
+            />
+            <FacebookIcon
+              color="secondary"
+              sx={{
+                fontSize: 40,
+                ":hover": {
+                  cursor: "pointer",
+                  transition: "all .3s ease-out",
+                  transform: "translateY(-5px)",
+                },
+              }}
+            />
+            <TwitterIcon
+              color="secondary"
+              sx={{
+                fontSize: 40,
+                ":hover": {
+                  cursor: "pointer",
+                  transition: "all .3s ease-out",
+                  transform: "translateY(-5px)",
+                },
+              }}
+            />
+            <LinkedInIcon
+              color="secondary"
+              sx={{
+                fontSize: 40,
+                ":hover": {
+                  cursor: "pointer",
+                  transition: "all .3s ease-out",
+                  transform: "translateY(-5px)",
+                },
+              }}
+            />
+          </Stack>
+        </Stack>
       </div>
     </Box>
   );
