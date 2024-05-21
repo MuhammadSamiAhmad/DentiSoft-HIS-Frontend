@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, TextField, MenuItem } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -10,15 +10,29 @@ const DiagnosePrescribe = () => {
   const diagnosisSchema = yup.object().shape({
     affectedArea: yup.string().required("Affected area is required"),
     diagnosis: yup.string().required("Diagnosis is required"),
-    description: yup.string().required("Description is required"),
-    medications: yup.string().required("Medication is required"),
+    diagnoseDescription: yup.string().required("Description is required"),
+
+    treatmentType: yup.string().required("Description is required"),
+    treatmentDescription: yup.string().required("Description is required"),
+    treatmentEndDate: yup.string().required("Description is required"),
+
+    medicationName: yup.string().required("Description is required"),
+    Dosage: yup.string().required("Medication is required"),
+    dosageFreq: yup.string().required("Medication is required"),
   });
 
   const initialValues = {
     affectedArea: "",
     diagnosis: "",
-    description: "",
-    medications: "",
+    diagnoseDescription: "",
+
+    treatmentType: "",
+    treatmentDescription: "",
+    treatmentEndDate: "",
+
+    medicationName: "",
+    Dosage: "",
+    dosageFreq: "",
   };
 
   const handleFormSubmit = (values) => {
@@ -50,9 +64,11 @@ const DiagnosePrescribe = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
+              <Typography variant="h4" sx={{ gridColumn: "span 4" }}>
+                Diagnose Section
+              </Typography>
               <TextField
                 fullWidth
-                select
                 variant="filled"
                 label="Affected Area"
                 name="affectedArea"
@@ -61,17 +77,10 @@ const DiagnosePrescribe = () => {
                 onBlur={handleBlur}
                 error={touched.affectedArea && !!errors.affectedArea}
                 helperText={touched.affectedArea && errors.affectedArea}
-                sx={{ gridColumn: "span 4" }}
-              >
-                <MenuItem value="Maxillary Anterior">
-                  Maxillary Anterior
-                </MenuItem>
-                <MenuItem value="Mandibular Molars">Mandibular Molars</MenuItem>
-                {/* Add more affected areas as needed */}
-              </TextField>
+                sx={{ gridColumn: "span 2" }}
+              />
               <TextField
                 fullWidth
-                select
                 variant="filled"
                 label="Diagnosis"
                 name="diagnosis"
@@ -80,43 +89,106 @@ const DiagnosePrescribe = () => {
                 onBlur={handleBlur}
                 error={touched.diagnosis && !!errors.diagnosis}
                 helperText={touched.diagnosis && errors.diagnosis}
-                sx={{ gridColumn: "span 4" }}
-              >
-                <MenuItem value="Dental Caries">
-                  Dental Caries (Cavity)
-                </MenuItem>
-                <MenuItem value="Gingivitis">Gingivitis</MenuItem>
-                {/* Add more diagnosis options as needed */}
-              </TextField>
+                sx={{ gridColumn: "span 2" }}
+              />
               <TextField
                 fullWidth
                 variant="filled"
-                multiline
-                rows={4}
-                label="Description"
-                name="description"
-                value={values.description}
+                label="Diagnose Description"
+                name="diagnoseDescription"
+                value={values.diagnoseDescription}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={touched.description && !!errors.description}
-                helperText={touched.description && errors.description}
+                error={
+                  touched.diagnoseDescription && !!errors.diagnoseDescription
+                }
+                helperText={
+                  touched.diagnoseDescription && errors.diagnoseDescription
+                }
+                sx={{ gridColumn: "span 4" }}
+              />
+              <Typography variant="h4" sx={{ gridColumn: "span 4" }}>
+                Treatment Section
+              </Typography>
+              <TextField
+                fullWidth
+                variant="filled"
+                label="Treatment Type"
+                name="treatmentType"
+                value={values.treatmentType}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.treatmentType && !!errors.treatmentType}
+                helperText={touched.treatmentType && errors.treatmentType}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="date"
+                label="Treatment End Date"
+                name="treatmentEndDate"
+                value={values.treatmentEndDate}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.treatmentEndDate && !!errors.treatmentEndDate}
+                helperText={touched.treatmentEndDate && errors.treatmentEndDate}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                label="Treatment Description"
+                name="treatmentDescription"
+                value={values.treatmentDescription}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={
+                  touched.treatmentDescription && !!errors.treatmentDescription
+                }
+                helperText={
+                  touched.treatmentDescription && errors.treatmentDescription
+                }
+                sx={{ gridColumn: "span 4" }}
+              />
+              <Typography variant="h4" sx={{ gridColumn: "span 4" }}>
+                Medication Section
+              </Typography>
+              <TextField
+                fullWidth
+                variant="filled"
+                label="Medication Name"
+                name="medicationName"
+                value={values.medicationName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.medicationName && !!errors.medicationName}
+                helperText={touched.medicationName && errors.medicationName}
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
-                placeholder="Write Drugs and separate them by a comma, for example:
-                Penicillin,Ibuprofen,Amoxicillin... and so on"
-                multiline
-                rows={4}
-                label="Medications"
-                name="medications"
-                value={values.medications}
+                label="Dosage"
+                name="Dosage"
+                value={values.Dosage}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={touched.medications && !!errors.medications}
-                helperText={touched.medications && errors.medications}
-                sx={{ gridColumn: "span 4" }}
+                error={touched.Dosage && !!errors.Dosage}
+                helperText={touched.Dosage && errors.Dosage}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                label="Dosage Frequency"
+                name="dosageFreq"
+                value={values.dosageFreq}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.dosageFreq && !!errors.dosageFreq}
+                helperText={touched.dosageFreq && errors.dosageFreq}
+                sx={{ gridColumn: "span 2" }}
               />
             </Box>
             <Box display="flex" justifyContent="start" mt="20px">
